@@ -1,0 +1,1745 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="description" content="Percorsi di massaggio drenante e detensionante a Sant'Agostino di Albignasego, Padova. Otto sale, analisi InBody 770, tre metodi drenanti. Richiedi il catalogo su WhatsApp."><title>Percorsi Detensionami</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#F6F1EA;
+  --sand-2:#EDE4D9;
+  --paper:#FFFFFF;
+  --ink:#221E1A;
+  --ink-soft:#4A423A;
+  --muted:#8A7C6E;
+  --clay:#A8573A;
+  --clay-dark:#8E4529;
+  --line:#DFD4C6;
+  --espresso:#1B1714;
+  --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --wrap:1140px;
+  --header-h:74px;
+  --bar-h:76px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{
+  margin:0; background:var(--sand); color:var(--ink);
+  font-family:var(--sans); font-size:17px; line-height:1.65;
+  font-weight:300; -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block}
+a{color:inherit}
+a:focus-visible, summary:focus-visible, button:focus-visible{outline:2px solid var(--clay); outline-offset:3px}
+[id]{scroll-margin-top:calc(var(--header-h) + 8px)}
+
+.wrap{max-width:var(--wrap); margin:0 auto; padding:0 28px}
+.eyebrow{
+  font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+  font-weight:500; color:var(--clay); margin:0 0 18px;
+}
+h1,h2,h3{font-family:var(--serif); font-weight:300; letter-spacing:-.01em; margin:0; text-wrap:balance}
+h1{font-size:clamp(36px,6.4vw,74px); line-height:1.04}
+h2{font-size:clamp(32px,4.4vw,50px); line-height:1.08}
+h3{font-size:24px; line-height:1.2}
+p{margin:0 0 18px}
+section{padding:clamp(70px,8.5vw,120px) 0}
+.mobile-only{display:none}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  font-family:var(--sans); font-size:14px; font-weight:500; letter-spacing:.06em;
+  text-transform:uppercase; text-decoration:none;
+  padding:16px 30px; border-radius:2px; border:1px solid transparent;
+  transition:background .2s ease, color .2s ease, border-color .2s ease;
+  cursor:pointer;
+}
+.btn-primary{background:var(--clay); color:#fff}
+.btn-primary:hover{background:var(--clay-dark)}
+.btn-ghost{background:transparent; color:var(--ink); border-color:var(--ink)}
+.btn-ghost:hover{background:var(--ink); color:var(--sand)}
+.btn-light{background:transparent; color:#fff; border-color:rgba(255,255,255,.6)}
+.btn-light:hover{background:#fff; color:var(--ink)}
+.wa-icon{width:17px; height:17px; flex:none}
+
+/* ---------- header ---------- */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(246,241,234,.94); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex; align-items:center; justify-content:space-between; height:var(--header-h); gap:16px}
+.logo{
+  font-family:var(--sans); font-size:15px; font-weight:600;
+  letter-spacing:.26em; text-decoration:none;
+}
+.nav-links{display:flex; gap:30px; list-style:none; margin:0; padding:0}
+.nav-links a{
+  text-decoration:none; font-size:13px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-soft); font-weight:400;
+}
+.nav-links a:hover{color:var(--clay)}
+.nav .btn{padding:12px 22px; font-size:12px}
+.menu-btn{
+  display:none; align-items:center; gap:10px;
+  background:none; border:1px solid var(--ink); border-radius:2px;
+  padding:10px 14px; font-family:var(--sans); font-size:12px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink); cursor:pointer;
+}
+.menu-btn .bars{display:block; width:18px; height:12px; position:relative}
+.menu-btn .bars::before,.menu-btn .bars::after{
+  content:''; position:absolute; left:0; right:0; height:1.5px; background:currentColor;
+  transition:transform .2s ease, top .2s ease;
+}
+.menu-btn .bars::before{top:0}
+.menu-btn .bars::after{top:10px}
+body.menu-open .menu-btn .bars::before{top:5px; transform:rotate(45deg)}
+body.menu-open .menu-btn .bars::after{top:5px; transform:rotate(-45deg)}
+
+/* full-screen menu (mobile) */
+.menu{
+  position:fixed; inset:0; z-index:60; background:var(--espresso); color:var(--sand);
+  display:none; flex-direction:column; padding:calc(var(--header-h) + 24px) 28px 40px;
+}
+body.menu-open .menu{display:flex}
+body.menu-open{overflow:hidden}
+.menu .menu-close{
+  position:absolute; top:18px; right:22px; background:none; border:0; color:var(--sand);
+  font-size:34px; line-height:1; cursor:pointer; padding:8px 12px; font-weight:300;
+}
+.menu ol{list-style:none; margin:0; padding:0; counter-reset:m}
+.menu li{border-bottom:1px solid rgba(237,228,217,.16)}
+.menu li a{
+  display:flex; align-items:baseline; gap:18px; text-decoration:none;
+  font-family:var(--serif); font-size:34px; line-height:1.1; padding:20px 0;
+}
+.menu li a small{
+  font-family:var(--sans); font-size:11px; letter-spacing:.2em; color:#D89A7A; width:26px; flex:none;
+}
+.menu .menu-foot{margin-top:auto; padding-top:28px; font-size:13px; color:rgba(237,228,217,.6); line-height:1.7}
+.menu .menu-foot a{text-decoration:none; color:var(--sand)}
+
+/* fixed bottom bar (mobile) */
+.bottom-bar{
+  display:none; position:fixed; left:0; right:0; bottom:0; z-index:55;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(246,241,234,.96); backdrop-filter:blur(10px);
+  border-top:1px solid var(--line);
+  transition:transform .25s ease;
+}
+.bottom-bar .btn{width:100%; padding:16px 18px; font-size:13px}
+.bottom-bar.is-hidden{transform:translateY(110%)}
+
+/* page prev/next (mobile) */
+.page-next{
+  display:none; border-top:1px solid var(--line);
+  padding:30px 28px 40px; text-align:center;
+}
+.page-next a{
+  text-decoration:none; font-family:var(--serif); font-size:26px; color:var(--ink);
+}
+.page-next a small{
+  display:block; font-family:var(--sans); font-size:11px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--clay); margin-bottom:8px;
+}
+.sale + .page-next, .page-next.on-dark{background:var(--espresso); color:var(--sand); border-color:rgba(237,228,217,.16)}
+.page-next.on-dark a{color:var(--sand)}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative; display:flex; align-items:flex-end;
+  padding:0; color:#fff; overflow:hidden;
+}
+.hero>img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center 45%; z-index:0;
+}
+.hero::after{
+  content:''; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(to top, rgba(20,16,13,.94) 0%, rgba(20,16,13,.62) 45%, rgba(20,16,13,.22) 100%);
+}
+.hero .wrap{position:relative; z-index:2; padding-top:clamp(120px,20vw,240px); padding-bottom:clamp(52px,7vw,86px); width:100%}
+.hero .eyebrow{color:#E9C9B6}
+.hero h1{max-width:16ch}
+.hero .lede{
+  font-size:clamp(17px,2vw,21px); max-width:52ch;
+  margin:24px 0 34px; color:rgba(255,255,255,.87); font-weight:300;
+}
+.hero-cta{display:flex; flex-wrap:wrap; gap:14px}
+
+/* ---------- strip ---------- */
+.strip{background:var(--espresso); color:#EDE4D9}
+.strip .wrap{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:14px 52px;
+  padding-top:22px; padding-bottom:22px;
+  font-size:12px; letter-spacing:.16em; text-transform:uppercase; text-align:center;
+}
+.strip span{opacity:.82}
+
+/* ---------- intro ---------- */
+.intro{max-width:720px}
+.intro p{font-size:clamp(18px,2.1vw,22px); line-height:1.55; color:var(--ink-soft)}
+.intro p:first-of-type{color:var(--ink)}
+
+/* ---------- explore tiles (mobile home) ---------- */
+.explore{padding:0 0 clamp(60px,8vw,100px)}
+.tiles{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.tile{
+  position:relative; display:block; aspect-ratio:1/1.05; overflow:hidden;
+  text-decoration:none; color:#fff; background:var(--espresso);
+}
+.tile img{width:100%; height:100%; object-fit:cover; opacity:.85}
+.tile span{
+  position:absolute; left:14px; right:14px; bottom:14px;
+  font-family:var(--serif); font-size:22px; line-height:1.1;
+  text-shadow:0 1px 10px rgba(0,0,0,.6);
+}
+.tile small{
+  position:absolute; left:14px; top:12px; font-size:10px; letter-spacing:.2em;
+  text-transform:uppercase; color:#E9C9B6;
+}
+
+/* ---------- benefits ---------- */
+.benefits{background:var(--sand-2)}
+.benefit-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+  margin-top:56px; background:var(--line); border:1px solid var(--line);
+}
+.benefit{background:var(--sand-2); padding:34px 30px}
+.benefit h3{font-size:20px; margin-bottom:8px}
+.benefit p{font-size:15px; color:var(--ink-soft); margin:0; line-height:1.6}
+@media(max-width:900px){ .benefit-grid{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:600px){ .benefit-grid{grid-template-columns:1fr} }
+
+/* ---------- trattamenti ---------- */
+.treat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+@media(max-width:900px){ .treat-grid{grid-template-columns:1fr 1fr} }
+@media(max-width:600px){ .treat-grid{grid-template-columns:1fr} }
+.treat{background:var(--paper); border:1px solid var(--line); padding:30px 28px}
+.treat .t-meta{
+  font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--clay); font-weight:500; margin:0 0 12px;
+}
+.treat h3{font-size:24px; margin-bottom:10px}
+.treat p{font-size:15px; color:var(--ink-soft); margin:0; line-height:1.6}
+
+/* ---------- percorsi ---------- */
+.section-head{max-width:680px; margin-bottom:56px}
+.section-head p{color:var(--muted); font-size:18px; margin:20px 0 0}
+.cards{display:grid; grid-template-columns:repeat(2,1fr); gap:26px}
+@media(max-width:860px){ .cards{grid-template-columns:1fr} }
+.card{
+  background:var(--paper); border:1px solid var(--line);
+  padding:40px 36px 34px; display:flex; flex-direction:column;
+  position:relative;
+}
+.card.featured{background:var(--espresso); color:var(--sand); border-color:var(--espresso)}
+.card.featured .card-meta,.card.featured li{color:rgba(237,228,217,.78)}
+.card.featured .card-rule{background:rgba(237,228,217,.2)}
+.tag{
+  position:absolute; top:-1px; right:-1px;
+  background:var(--clay); color:#fff; font-size:10px; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase; padding:8px 14px;
+}
+.card-meta{
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:14px; font-weight:500;
+}
+.card h3{font-size:30px; margin-bottom:6px}
+.card-format{
+  font-family:var(--serif); font-size:20px; color:var(--clay);
+  margin:0 0 22px;
+}
+.card.featured .card-format{color:#E0A184}
+.card-rule{height:1px; background:var(--line); margin:0 0 22px}
+.card ul{list-style:none; margin:0 0 28px; padding:0; font-size:15.5px; color:var(--ink-soft)}
+.card li{padding:9px 0 9px 26px; position:relative; line-height:1.5}
+.card li::before{
+  content:''; position:absolute; left:0; top:17px;
+  width:9px; height:1px; background:var(--clay);
+}
+.card .btn{margin-top:auto; align-self:flex-start}
+
+.price-note{
+  margin-top:38px; padding:26px 30px;
+  border:1px dashed var(--line); background:var(--paper);
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;
+}
+.price-note p{margin:0; font-size:16px; color:var(--ink-soft); max-width:62ch}
+.price-note strong{font-weight:500; color:var(--ink)}
+
+/* ---------- split ---------- */
+.split{display:grid; grid-template-columns:1fr 1fr; gap:clamp(34px,6vw,80px); align-items:center}
+.split.reverse .split-media{order:2}
+@media(max-width:860px){ .split{grid-template-columns:1fr} .split.reverse .split-media{order:0} }
+.split-media img{width:100%; max-height:620px; object-fit:cover}
+.split-body p{color:var(--ink-soft)}
+.quote{
+  font-family:var(--serif); font-size:clamp(26px,3.2vw,36px); line-height:1.25;
+  color:var(--ink); margin:0 0 22px;
+}
+.facts{list-style:none; margin:28px 0 0; padding:0; border-top:1px solid var(--line)}
+.facts li{
+  padding:14px 0; border-bottom:1px solid var(--line);
+  font-size:15px; color:var(--ink-soft);
+  display:flex; gap:16px; align-items:baseline;
+}
+.facts li b{
+  font-weight:500; color:var(--clay); font-size:11px;
+  letter-spacing:.16em; text-transform:uppercase; flex:none; width:112px;
+}
+.facts li a{text-decoration:none; border-bottom:1px solid var(--line)}
+
+/* ---------- sale ---------- */
+.sale{background:var(--espresso); color:var(--sand)}
+.sale h2{color:var(--sand)}
+.sale .section-head{max-width:760px}
+.sale .section-head p{color:rgba(237,228,217,.7)}
+.room-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px}
+@media(max-width:980px){ .room-grid{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:520px){ .room-grid{grid-template-columns:1fr} }
+.room img{width:100%; aspect-ratio:4/5; object-fit:cover}
+.room h3{font-size:21px; margin:18px 0 5px}
+.room .room-tag{
+  font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+  color:#D89A7A; margin:0 0 10px;
+}
+.room p{font-size:14px; color:rgba(237,228,217,.7); margin:0; line-height:1.6}
+.room-note{
+  margin-top:48px; padding-top:34px; border-top:1px solid rgba(237,228,217,.16);
+  display:grid; grid-template-columns:120px 1fr; gap:26px; align-items:center;
+}
+.room-note img{width:120px; height:120px; object-fit:cover}
+.room-note p{margin:0; font-size:15px; color:rgba(237,228,217,.72); max-width:64ch}
+.room-note b{font-weight:500; color:var(--sand)}
+@media(max-width:520px){ .room-note{grid-template-columns:1fr} .room-note img{width:100%; height:180px} }
+
+/* ---------- storia (percorsi) ---------- */
+.story{background:var(--espresso); color:var(--sand)}
+.story .q{font-family:var(--serif); font-size:clamp(28px,4vw,46px); line-height:1.15; max-width:22ch; margin:0 0 18px; color:var(--sand); text-wrap:balance}
+.story .a{font-family:var(--serif); font-size:clamp(22px,2.8vw,30px); color:#E0A184; margin:0 0 40px}
+.story .day{max-width:62ch; color:rgba(237,228,217,.82); font-size:17px}
+.story .day p{margin:0 0 14px}
+.story .last{font-family:var(--serif); font-size:clamp(20px,2.4vw,26px); color:var(--sand); margin-top:26px}
+
+/* ---------- quello che noti (sale) ---------- */
+.notice{margin-top:64px; padding-top:44px; border-top:1px solid rgba(237,228,217,.16)}
+.notice ul{list-style:none; margin:24px 0 0; padding:0; max-width:680px}
+.notice li{font-family:var(--serif); font-size:clamp(21px,2.6vw,28px); line-height:1.25; padding:14px 0; border-bottom:1px solid rgba(237,228,217,.12)}
+.notice li:last-child{color:#E0A184}
+
+/* ---------- drenami ---------- */
+.claim{font-family:var(--serif); font-size:clamp(24px,3vw,34px); line-height:1.25; max-width:24ch; margin:0 0 22px; text-wrap:balance}
+.dren-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:44px}
+@media(max-width:700px){ .dren-grid{grid-template-columns:1fr} }
+.dren{background:var(--paper); border:1px solid var(--line); padding:30px 28px}
+.dren h3{font-size:24px; margin-bottom:10px}
+.dren p{margin:0; font-size:15.5px; color:var(--ink-soft); line-height:1.6}
+.tile.wide{grid-column:1/-1; aspect-ratio:2/1}
+
+/* ---------- membership ---------- */
+.member-head h2{max-width:20ch}
+.vs-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:44px}
+@media(max-width:760px){ .vs-grid{grid-template-columns:1fr} }
+.vs{padding:30px 28px; border:1px solid var(--line); background:var(--paper)}
+.vs.win{background:var(--espresso); color:var(--sand); border-color:var(--espresso)}
+.vs .vs-lbl{font-size:11px; letter-spacing:.2em; text-transform:uppercase; font-weight:500; color:var(--muted); margin:0 0 10px}
+.vs.win .vs-lbl{color:#D89A7A}
+.vs h3{font-size:26px; margin-bottom:16px}
+.vs ul{list-style:none; margin:0; padding:0; font-size:15.5px; color:var(--ink-soft)}
+.vs.win ul{color:rgba(237,228,217,.82)}
+.vs li{padding:10px 0 10px 26px; position:relative; border-top:1px solid var(--line); line-height:1.5}
+.vs.win li{border-top-color:rgba(237,228,217,.16)}
+.vs li::before{content:''; position:absolute; left:0; top:20px; width:9px; height:1px; background:var(--clay)}
+.cards.three{grid-template-columns:repeat(3,1fr)}
+@media(max-width:980px){ .cards.three{grid-template-columns:1fr} }
+.tl-wrap{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(30px,5vw,70px); align-items:center}
+@media(max-width:860px){ .tl-wrap{grid-template-columns:1fr} }
+.timeline{border-left:2px solid var(--clay); padding-left:26px}
+.tl{display:grid; grid-template-columns:82px 1fr; gap:16px; padding:14px 0; border-bottom:1px solid var(--line)}
+.tl:last-child{border-bottom:0}
+.tl .m{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--clay); font-weight:500; padding-top:5px}
+.tl h3{font-size:21px; margin-bottom:4px}
+.tl p{margin:0; font-size:15px; color:var(--ink-soft); line-height:1.55}
+
+/* ---------- libri ---------- */
+.books{list-style:none; margin:0; padding:0; border-top:1px solid var(--line)}
+.books li{
+  display:grid; grid-template-columns:118px 1fr; gap:18px;
+  padding:16px 0; border-bottom:1px solid var(--line); align-items:baseline;
+}
+.books .when{
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--clay); font-weight:500; font-variant-numeric:tabular-nums;
+}
+.books .when small{display:block; color:var(--muted); letter-spacing:.08em; margin-top:3px; font-size:10px}
+.books h3{font-size:21px; margin:0 0 3px}
+.books p{margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55}
+@media(max-width:520px){ .books li{grid-template-columns:1fr; gap:6px} }
+
+/* ---------- contatti ---------- */
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,70px)}
+@media(max-width:760px){ .contact-grid{grid-template-columns:1fr} }
+.contact-grid h3{font-size:22px; margin-bottom:14px}
+.contact-grid p{color:var(--ink-soft); font-size:16px}
+.contact-list{list-style:none; margin:0; padding:0; border-top:1px solid var(--line)}
+.contact-list li{border-bottom:1px solid var(--line)}
+.contact-list a{
+  display:flex; justify-content:space-between; align-items:center; gap:14px;
+  padding:16px 0; text-decoration:none; font-size:16px;
+}
+.contact-list a span{color:var(--muted); font-size:12px; letter-spacing:.14em; text-transform:uppercase}
+.contact-list a:hover{color:var(--clay)}
+
+/* ---------- faq ---------- */
+.faq-list{max-width:840px; border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{
+  list-style:none; cursor:pointer; padding:24px 46px 24px 0;
+  font-family:var(--serif); font-size:clamp(20px,2.3vw,25px);
+  position:relative; color:var(--ink);
+}
+summary::-webkit-details-marker{display:none}
+summary::after{
+  content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-weight:300; font-size:26px; color:var(--clay);
+}
+details[open] summary::after{content:'\2013'}
+summary:hover{color:var(--clay)}
+details .answer{padding:0 60px 26px 0; color:var(--ink-soft); font-size:16px}
+details .answer p:last-child{margin-bottom:0}
+
+/* ---------- terms ---------- */
+.terms{background:var(--sand-2)}
+.terms-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:0 60px}
+@media(max-width:760px){ .terms-grid{grid-template-columns:1fr} }
+.terms-grid ul{margin:0; padding:0}
+.terms-grid li{
+  list-style:none; padding:16px 0 16px 24px; position:relative;
+  border-bottom:1px solid var(--line); font-size:15px; color:var(--ink-soft);
+}
+.terms-grid li::before{
+  content:''; position:absolute; left:0; top:25px;
+  width:8px; height:1px; background:var(--clay);
+}
+
+/* ---------- final cta ---------- */
+.final{
+  position:relative; color:#fff; text-align:center; overflow:hidden;
+  padding:clamp(88px,10vw,140px) 0;
+}
+.final>img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0}
+.final::after{content:''; position:absolute; inset:0; background:rgba(20,16,13,.72); z-index:1}
+.final .wrap{position:relative; z-index:2}
+.final h2{max-width:18ch; margin:0 auto; color:#fff}
+.final p{
+  max-width:52ch; margin:24px auto 36px;
+  color:rgba(255,255,255,.83); font-size:18px;
+}
+
+/* ---------- footer ---------- */
+.site-footer{background:var(--espresso); color:rgba(237,228,217,.72); padding:80px 0 40px; font-size:14.5px}
+.foot-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:40px}
+@media(max-width:860px){ .foot-grid{grid-template-columns:1fr 1fr} }
+@media(max-width:520px){ .foot-grid{grid-template-columns:1fr} }
+.foot-logo{
+  font-size:15px; font-weight:600; letter-spacing:.26em; color:var(--sand);
+  display:block; margin-bottom:16px; text-decoration:none;
+}
+.foot-grid p{margin:0 0 12px; line-height:1.7; max-width:34ch}
+.foot-grid h4{
+  font-family:var(--sans); font-size:11px; font-weight:500;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--sand);
+  margin:0 0 18px;
+}
+.foot-grid ul{list-style:none; margin:0; padding:0}
+.foot-grid li{margin-bottom:11px}
+.foot-grid a{text-decoration:none}
+.foot-grid a:hover{color:#D89A7A}
+.foot-bottom{
+  margin-top:60px; padding-top:26px; border-top:1px solid rgba(237,228,217,.14);
+  display:flex; flex-wrap:wrap; gap:12px 30px; justify-content:space-between;
+  font-size:12.5px; color:rgba(237,228,217,.5);
+}
+
+/* ================= MOBILE: pages, menu, bottom bar ================= */
+@media(max-width:900px){
+  :root{--header-h:64px}
+  .nav-links{display:none}
+  .nav .btn{display:none}
+  .menu-btn{display:inline-flex}
+  .mobile-only{display:block}
+  .bottom-bar{display:block}
+  .page-next{display:block}
+  body{padding-bottom:var(--bar-h)}
+  body.paged .page{display:none}
+  body.paged .page.active{display:block}
+  body.paged .site-footer{padding-top:56px}
+  .hero .wrap{padding-top:96px}
+  section{padding:60px 0}
+}
+@media(max-width:520px){
+  .nav .btn{display:inline-flex; padding:11px 13px}
+  .nav .btn span{display:none}
+}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important} }
+</style>
+
+
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="#home">DETENSIONAMI</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#sale">Le 8 sale</a></li>
+      <li><a href="#drenami">Drenami</a></li>
+      <li><a href="#trattamenti">Trattamenti</a></li>
+      <li><a href="#membership">Membership</a></li>
+      <li><a href="#percorsi">Percorsi</a></li>
+      <li><a href="#yoga">Al piano di sopra</a></li>
+      <li><a href="#chi-sono">Chi sono</a></li>
+    </ul>
+    <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20ricevere%20il%20catalogo%20aggiornato%20dei%20percorsi." target="_blank" rel="noopener">
+      <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.2-8.24 8.2zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+      <span>Richiedi il catalogo</span>
+    </a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu"><span class="bars" aria-hidden="true"></span>Menu</button>
+  </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="Menu principale">
+  <button class="menu-close" id="menuClose" type="button" aria-label="Chiudi menu">×</button>
+  <ol>
+    <li><a href="#home"><small>01</small>Home</a></li>
+    <li><a href="#sale"><small>02</small>Le 8 sale</a></li>
+    <li><a href="#drenami"><small>03</small>Drenami</a></li>
+    <li><a href="#trattamenti"><small>04</small>Il tuo trattamento</a></li>
+    <li><a href="#membership"><small>05</small>Membership</a></li>
+    <li><a href="#percorsi"><small>06</small>Percorsi</a></li>
+    <li><a href="#yoga"><small>07</small>Al piano di sopra: yoga</a></li>
+    <li><a href="#chi-sono"><small>08</small>Chi sono &amp; contatti</a></li>
+  </ol>
+  <div class="menu-foot">
+    Sant'Agostino di Albignasego · Padova<br>
+    <a href="https://wa.me/393347918516" target="_blank" rel="noopener">WhatsApp 334 79 18 516</a> · <a href="https://www.instagram.com/detensionami/" target="_blank" rel="noopener">@detensionami</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= PAGE 1 · HOME ================= -->
+<div class="page" id="home">
+
+  <section class="hero">
+    <img src="img/hero-viso.jpg" alt="Una cliente sorride a occhi chiusi durante un massaggio al collo nella sala biosauna">
+    <div class="wrap">
+      <p class="eyebrow">Sant'Agostino di Albignasego · Padova</p>
+      <h1>Non una seduta.<br>Un percorso costruito sul tuo corpo.</h1>
+      <p class="lede">
+        Una singola seduta dà sollievo. Un percorso costruisce un cambiamento —
+        misurato prima, durante e dopo con l'analisi InBody 770. Non devi crederci: lo vedi.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20ricevere%20il%20catalogo%20aggiornato%20dei%20percorsi." target="_blank" rel="noopener">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.2-8.24 8.2zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+          <span>Richiedi il catalogo</span>
+        </a>
+        <a class="btn btn-light" href="#percorsi">Vedi i percorsi</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <span>Otto sale, otto universi</span>
+      <span>Analisi InBody 770 inclusa</span>
+      <span>Unico studio in Veneto con tutti e tre i metodi drenanti</span>
+    </div>
+  </div>
+
+  <section id="metodo">
+    <div class="wrap">
+      <div class="split">
+      <div class="split-body intro">
+        <p class="eyebrow">Perché un percorso</p>
+        <p>
+          Il corpo non cambia in un'ora. Cambia quando il lavoro manuale diventa
+          costante, calibrato e verificabile.
+        </p>
+        <p>
+          Ogni percorso parte da una bioimpedenziometria InBody 770: acqua intra ed
+          extracellulare, massa magra e grassa, distribuzione segmentale, ritenzione
+          localizzata, equilibrio destra-sinistra. I numeri dicono dove intervenire e
+          con quale tecnica. Poi si costruisce il ciclo — mescolando le sale e i metodi
+          in base all'obiettivo — e alla fine si rimisura.
+        </p>
+        <p>
+          In molti casi misuriamo prima e dopo la stessa seduta: la perdita di liquidi
+          extracellulari di un drenante in biosauna è quantificabile in tempo reale.
+        </p>
+      </div>
+      <div class="split-media"><img src="img/relax-donna.jpg" alt="Una donna sdraiata sul lettino sorride, rilassata, nella luce del mattino"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="explore mobile-only">
+    <div class="wrap">
+      <p class="eyebrow">Esplora</p>
+      <div class="tiles">
+        <a class="tile wide" href="#sale"><img src="img/cinema.jpg" alt=""><small>02</small><span>Le 8 sale</span></a>
+        <a class="tile" href="#drenami"><img src="img/emozionale.jpg" alt=""><small>03</small><span>Drenami</span></a>
+        <a class="tile" href="#trattamenti"><img src="img/biosauna-trattamento.jpg" alt=""><small>04</small><span>Il tuo trattamento</span></a>
+        <a class="tile" href="#membership"><img src="img/pianoforte.jpg" alt=""><small>05</small><span>Membership</span></a>
+        <a class="tile" href="#percorsi"><img src="img/sauna-vasca.jpg" alt=""><small>06</small><span>Percorsi</span></a>
+        <a class="tile wide" href="#yoga"><img src="img/yoga-shala.jpg" alt="" style="object-position:center 70%"><small>07</small><span>Al piano di sopra: yoga con Linda</span></a>
+        <a class="tile wide" href="#chi-sono"><img src="img/nicola-ritratto.jpg" alt=""><small>08</small><span>Chi sono &amp; contatti</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-next"><a href="#sale"><small>Pagina 2 di 8</small>Le 8 sale →</a></div>
+</div>
+
+<!-- ================= PAGE 2 · LE 8 SALE ================= -->
+<div class="page" id="sale">
+
+  <section class="sale">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" style="color:#D89A7A">Gli ambienti</p>
+        <h2>Otto sale. Otto universi. Un solo massaggio: il tuo.</h2>
+        <p>
+          Lo stesso massaggio, fatto immerso nell'acqua a 34 °C, dentro una sauna o sotto
+          un cielo stellato, non è lo stesso massaggio. Ogni corpo arriva con una storia
+          diversa, e non tutti hanno bisogno dello stesso ambiente per lasciarsi andare.
+          La stanza si sceglie insieme, seduta per seduta.
+        </p>
+      </div>
+      <div class="room-grid">
+
+        <div class="room">
+          <img src="img/cinema.jpg" alt="Sala cinema con lettino da massaggio davanti allo schermo, casse e subwoofer">
+          <h3>Sala Cinema</h3>
+          <p class="room-tag">Dolby Atmos · 14 casse + 4 sub</p>
+          <p>Il corpo viene massaggiato seguendo frequenze musicali che agiscono sul sistema nervoso autonomo. Solo su appuntamento dedicato.</p>
+        </div>
+
+        <div class="room">
+          <img src="img/pianoforte.jpg" alt="Sala con pianoforte, camino acceso, candele e lettino da massaggio">
+          <h3>Sala del Pianoforte</h3>
+          <p class="room-tag">Shala · fronte camino</p>
+          <p>Massaggio accompagnato da musica classica eseguita dal vivo. Riservato a chi è già stato in studio almeno una volta.</p>
+        </div>
+
+        <div class="room">
+          <img src="img/emozionale.jpg" alt="Sala emozionale con lettino su sale rosa illuminato, pannello rosso e cielo stellato">
+          <h3>Sala Emozionale</h3>
+          <p class="room-tag">Sale rosa · cielo stellato</p>
+          <p>Lettino LEMI Aemotion su sale rosa caldo, inclinabile di 30 gradi. Aromi, sound design e ritmo del massaggio a tempo di musica.</p>
+        </div>
+
+        <div class="room">
+          <img src="img/biosauna-stones.jpg" alt="Cabina biosauna in legno con lettino e pietre calde">
+          <h3>Sala Biosauna</h3>
+          <p class="room-tag">30–43 °C · drenaggio amplificato</p>
+          <p>Calore confortevole e vasodilatazione durante il massaggio. La perdita di liquidi si misura con l'InBody prima e dopo.</p>
+        </div>
+
+        <div class="room">
+          <img src="img/asiatica-luce.jpg" alt="Sala asiatica con pareti shoji, tatami e futon nella luce del mattino">
+          <h3>Sala Asiatica</h3>
+          <p class="room-tag">Thai su futon e tatami</p>
+          <p>Allungamenti e pressioni lungo le linee energetiche del corpo. Formula mista: 30 minuti di Thai e 30 di Detensionami.</p>
+        </div>
+
+        <div class="room">
+          <img src="img/nicola.jpg" alt="Trattamento fisioterapico sul tavolo Manuthera 242 sotto l'insegna al neon Detensionami">
+          <h3>Sala Fisioterapia</h3>
+          <p class="room-tag">Manuthera 242</p>
+          <p>Un tavolo che si inclina, si curva e si articola. Decontratturanti profondi, lavoro posturale, theragun.</p>
+        </div>
+
+        <div class="room">
+          <img src="img/sauna-vapore.jpg" alt="Sauna finlandese Harvia con vapore, davanti a un camino a legna acceso">
+          <h3>Sauna Harvia</h3>
+          <p class="room-tag">Studio 2 · fronte camino a legna</p>
+          <p>Cicli alternati sauna e vasca a 10 °C: il contrasto termico stimola circolazione e risposta antinfiammatoria.</p>
+        </div>
+
+        <div class="room">
+          <img src="img/pool-nuoto.jpg" alt="Nuotata controcorrente nell'endless pool dello Studio 2">
+          <h3>Endless Pool</h3>
+          <p class="room-tag">Studio 2 · 28–31 °C per nuotare · 34 °C in Watsu</p>
+          <p>Nuoto controcorrente per aprire il sistema linfatico, poi il massaggio: in acqua portata a 34 gradi per il Watsu, o sul lettino ad acqua calda.</p>
+        </div>
+
+      </div>
+
+      <div class="room-note">
+        <img src="img/doccia.jpg" alt="Doccia con illuminazione cromatica viola e vapore">
+        <p><b>E tra una sala e l'altra:</b> doccia con illuminazione cromatica regolabile, prodotti professionali, asciugamani in puro cotone. Ogni transizione è progettata perché tu non debba pensare a nulla.</p>
+      </div>
+
+      <div class="notice">
+        <p class="eyebrow" style="color:#D89A7A">Quello che noti senza che te lo diciamo</p>
+        <ul>
+          <li>Il calore c'è già quando entri.</li>
+          <li>Il suono lo senti nel corpo, non solo con le orecchie.</li>
+          <li>Il lettino si inclina, si scalda, si adatta. Non è un tavolo.</li>
+          <li>L'olio è miscelato per te, quel giorno, in base alla pelle e all'obiettivo.</li>
+          <li>A fine trattamento scegli tu il profumo della crema, tra trenta.</li>
+          <li>Le mani sono sempre le stesse. Otto sale, una persona.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-next on-dark"><a href="#drenami"><small>Pagina 3 di 8</small>Drenami →</a></div>
+</div>
+
+<!-- ================= PAGE 3 · DRENAMI ================= -->
+<div class="page" id="drenami">
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Drenami</p>
+        <h2>Un drenante non si giudica dal dolore.</h2>
+        <p>Drenare e modellare sono la specializzazione dello studio. Quattro cose da sapere prima di prenotarne uno, qui o altrove.</p>
+      </div>
+      <div class="split">
+        <div class="split-body">
+          <p class="eyebrow">La qualifica</p>
+          <p class="claim">Tre metodi, una qualifica sanitaria, una scelta fatta sui dati.</p>
+          <p>
+            Vodder per il drenaggio sanitario, la ritenzione patologica e i gonfiori cronici.
+            Renata França per il drenaggio estetico ad alta intensità, con risultati visibili
+            nella singola seduta. Manuela Shala per il lavoro modellante su addome e silhouette.
+          </p>
+          <p>
+            Sono l'unico studio in Veneto con qualifica sanitaria ad averli tutti e tre. E il
+            metodo non lo scegli tu al telefono, né lo scelgo io a sensazione: lo dicono i
+            numeri dell'InBody.
+          </p>
+        </div>
+        <div class="split-media"><img src="img/hero-mani.jpg" alt="Nicola Messina esegue un drenaggio sulla schiena nella sala biosauna"></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--sand-2)">
+    <div class="wrap">
+      <div class="split reverse">
+      <div class="split-media"><img src="img/relax-uomo.jpg" alt="Un uomo sdraiato sul lettino, rilassato, guarda in camera con un mezzo sorriso"></div>
+      <div class="split-body intro">
+        <p class="eyebrow">Il dolore non è un indicatore</p>
+        <p>
+          La linfa scorre in superficie, appena sotto la pelle, e si muove a pressione bassa.
+          Premere forte non la spinge: chiude i vasi che dovrebbe aprire.
+        </p>
+        <p>
+          Un drenaggio corretto non lascia segni. Se fa male, se lascia lividi, non è drenaggio:
+          è un altro massaggio, con un altro scopo. Qui la mano è decisa quando serve, mai violenta.
+        </p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Gli amplificatori</p>
+        <h2>La stessa ora, le stesse mani, più liquidi che si muovono.</h2>
+        <p>Un drenaggio su un lettino standard è fatto solo di mani. Qui, quando le mani arrivano, il lavoro è già iniziato da quattro parti.</p>
+      </div>
+      <div class="dren-grid">
+        <div class="dren">
+          <h3>Il calore</h3>
+          <p>La sala è già calda quando entri. I vasi si dilatano, i muscoli mollano, e i liquidi si spostano con meno resistenza.</p>
+        </div>
+        <div class="dren">
+          <h3>L'inclinazione</h3>
+          <p>Il lettino ti porta a testa in giù di trenta gradi, come in ospedale. La gravità smette di trattenere e inizia a drenare — prima ancora del massaggio.</p>
+        </div>
+        <div class="dren">
+          <h3>Il sale caldo</h3>
+          <p>Sotto la schiena non c'è plastica: c'è sale a contatto, che scalda in modo uniforme e lascia respirare la pelle.</p>
+        </div>
+        <div class="dren">
+          <h3>Il silenzio giusto</h3>
+          <p>Un soffitto che non chiede niente agli occhi, una luce che cambia piano, un suono che avvolge senza disturbare. Il sistema nervoso si spegne, e con lui la tensione che tiene chiusi i vasi.</p>
+        </div>
+      </div>
+      <div class="intro" style="margin-top:44px">
+        <p>
+          Non lavoro più a lungo: lavoro con la stanza dalla mia parte. Per questo i programmi
+          mirati che altrove chiedono dieci sedute, qui ne chiedono cinque. E per questo, quando
+          serve, misuriamo prima e dopo la stessa ora: la differenza si legge nei numeri, non
+          nella sensazione.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--sand-2)">
+    <div class="wrap">
+      <div class="split reverse">
+        <div class="split-media"><img src="img/inbody.jpg" alt="Bilancia bioimpedenziometrica InBody 770 nello studio"></div>
+        <div class="split-body">
+          <p class="eyebrow">Misuriamo, non fotografiamo</p>
+          <p class="claim">Perché qui non troverai foto prima e dopo.</p>
+          <p>
+            Una foto dipende dalla luce, dal respiro, dall'olio sulla pelle. Un metro dipende da
+            dove lo metti. Sono misure che si possono far dire quello che si vuole.
+          </p>
+          <p>
+            L'InBody 770 misura l'acqua extracellulare, arto per arto, prima e dopo la seduta.
+            Il numero lo vedi tu, sullo stesso strumento, a distanza di un'ora. Non devi
+            crederci: lo leggi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-next"><a href="#trattamenti"><small>Pagina 4 di 8</small>Il tuo trattamento →</a></div>
+</div>
+
+<!-- ================= PAGE 3 · TRATTAMENTI ================= -->
+<div class="page" id="trattamenti">
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Il tuo trattamento</p>
+        <h2>Nessun massaggio è uguale al precedente</h2>
+        <p>Mano leggera o profonda, a seconda di quello che il corpo chiede quel giorno. Questi sono gli strumenti; la combinazione la costruiamo insieme.</p>
+      </div>
+      <div class="treat-grid">
+
+        <div class="treat">
+          <p class="t-meta">Il metodo originale · 60 · 90 · 120 min</p>
+          <h3>Detensionami</h3>
+          <p>Dieci anni di tecniche apprese tra Londra e New York in un unico massaggio: svedese, deep tissue, californiano con hot stones, hawaiano. Lavora su contratture, stress, ansia e drenaggio. Variano musica, ritmo e intensità.</p>
+        </div>
+
+        <div class="treat">
+          <p class="t-meta">Drenaggio · tre metodi certificati</p>
+          <h3>Vodder · Renata França · Manuela Shala</h3>
+          <p>Sanitario, estetico e modellante sotto lo stesso tetto. Il Vodder per ritenzione patologica e gonfiori cronici, il Renata França per risultati visibili nella singola seduta, il Manuela Shala per addome e silhouette. Il metodo si sceglie sui dati InBody.</p>
+        </div>
+
+        <div class="treat">
+          <p class="t-meta">Sportivo decontratturante · 40 min</p>
+          <h3>Theragun Therapy</h3>
+          <p>Massaggio sportivo con percussori muscolari di precisione. Per chi pratica sport ad alto carico o ha contratture localizzate profonde.</p>
+        </div>
+
+        <div class="treat">
+          <p class="t-meta">Sanitario · a valutazione</p>
+          <h3>Massoterapia su Manuthera 242</h3>
+          <p>Lavoro fisioterapico su tavolo regolabile su più assi, per il trattamento posturale e segmentale. Cervicale, lombare, articolazioni.</p>
+        </div>
+
+        <div class="treat">
+          <p class="t-meta">Integrabili · a richiesta</p>
+          <h3>Tecniche complementari</h3>
+          <p>Coppettazione, maderoterapia, hot stones e taping elastico si inseriscono nel trattamento su valutazione, per amplificare l'azione decontratturante o drenante.</p>
+        </div>
+
+        <div class="treat">
+          <p class="t-meta">Esperienze · su appuntamento dedicato</p>
+          <h3>Oltre il massaggio</h3>
+          <p>Il Rituale Newyorkese in deprivazione sensoriale (120 minuti), il massaggio con pianoforte dal vivo, il Massaggio Emozionale Cinematico in sala Dolby Atmos. Costruiti per non essere replicabili altrove.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="inbody" style="background:var(--sand-2)">
+    <div class="wrap">
+      <div class="split">
+        <div class="split-media"><img src="img/inbody.jpg" alt="Bilancia bioimpedenziometrica InBody 770 nello studio, tra piante e pareti shoji"></div>
+        <div class="split-body">
+          <p class="eyebrow">InBody 770</p>
+          <p class="quote">Prima di toccarti, ti ascoltiamo.</p>
+          <p>
+            Ogni percorso parte da un'anamnesi e da una valutazione BIA con
+            impedenziometro segmentale: misuriamo la distribuzione dei liquidi arto
+            per arto, non "a occhio". Poi rimisuriamo dopo ogni ciclo, e vedi nero su
+            bianco quanto stai cambiando.
+          </p>
+          <ul class="facts">
+            <li><b>Composizione</b> Massa magra, massa grassa e loro distribuzione segmentale</li>
+            <li><b>Liquidi</b> Acqua intra ed extracellulare, ritenzione localizzata</li>
+            <li><b>Equilibrio</b> Confronto destra / sinistra, arto per arto</li>
+            <li><b>Follow-up</b> Report di controllo a fine ciclo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-next"><a href="#membership"><small>Pagina 5 di 8</small>Membership →</a></div>
+</div>
+
+<!-- ================= PAGE 5 · MEMBERSHIP ================= -->
+<div class="page" id="membership">
+
+  <section class="story">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#D89A7A">Membership</p>
+      <p class="q">Lo sai già che dovresti venire più spesso. L'abbonamento serve a farlo davvero.</p>
+      <div class="day">
+        <p>
+          Una seduta al mese, lo slot fisso che resta tuo, e la misurazione InBody ogni tre
+          mesi per vedere se sta funzionando. Tre mesi di impegno minimo, poi decidi tu.
+        </p>
+      </div>
+      <div class="hero-cta" style="margin-top:30px">
+        <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20informazioni%20sulla%20membership." target="_blank" rel="noopener">Chiedi della membership</a>
+        <a class="btn btn-light" href="#livelli">Vedi i tre livelli</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head member-head">
+        <p class="eyebrow">Non è un pacchetto</p>
+        <h2>Il pacchetto si compra. L'abbonamento si tiene.</h2>
+        <p>Un pacchetto è un numero di sedute pagate in anticipo, con una scadenza. Un abbonamento è un'abitudine con un posto fisso in agenda. Le differenze, una accanto all'altra.</p>
+      </div>
+      <div class="vs-grid">
+        <div class="vs">
+          <p class="vs-lbl">Il pacchetto</p>
+          <h3>Paghi le sedute</h3>
+          <ul>
+            <li>Tutto anticipato, in un'unica volta</li>
+            <li>Le sedute hanno una scadenza</li>
+            <li>Ogni volta cerchi un orario libero</li>
+            <li>Il tipo di trattamento è deciso all'acquisto</li>
+            <li>Finito il pacchetto, si ricomincia da zero</li>
+          </ul>
+        </div>
+        <div class="vs win">
+          <p class="vs-lbl">L'abbonamento</p>
+          <h3>Ti tieni il posto</h3>
+          <ul>
+            <li>Una quota al mese</li>
+            <li>Il credito resta valido due mesi</li>
+            <li>Lo stesso giorno e la stessa ora, tenuti per te</li>
+            <li>Scegli la durata; il trattamento si decide ogni volta</li>
+            <li>InBody ogni tre mesi, inclusa</li>
+            <li>Dopo tre mesi, disdici quando vuoi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="livelli" style="background:var(--sand-2)">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Tre livelli</p>
+        <h2>Scegli la durata, non il trattamento.</h2>
+        <p>Il tipo di massaggio si decide in studio, seduta per seduta, in base a cosa serve quel giorno. L'abbonamento fissa solo quanto tempo ti prendi.</p>
+      </div>
+      <div class="cards three">
+
+        <div class="card">
+          <p class="card-meta">Essenziale</p>
+          <h3>60 minuti</h3>
+          <p class="card-format">Una seduta al mese</p>
+          <div class="card-rule"></div>
+          <ul>
+            <li>Qualsiasi trattamento dello studio</li>
+            <li>Qualsiasi sala, secondo l'obiettivo</li>
+            <li>Tutti i vantaggi riservati</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20attivare%20la%20membership%20Essenziale%20(60%20minuti%20al%20mese)." target="_blank" rel="noopener">Attiva Essenziale</a>
+        </div>
+
+        <div class="card featured">
+          <span class="tag">Il più scelto</span>
+          <p class="card-meta">Completo</p>
+          <h3>90 minuti</h3>
+          <p class="card-format">Una seduta al mese</p>
+          <div class="card-rule"></div>
+          <ul>
+            <li>Qualsiasi trattamento dello studio</li>
+            <li>Biosauna sempre inclusa</li>
+            <li>Tutti i vantaggi riservati</li>
+          </ul>
+          <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20attivare%20la%20membership%20Completo%20(90%20minuti%20al%20mese)." target="_blank" rel="noopener">Attiva Completo</a>
+        </div>
+
+        <div class="card">
+          <p class="card-meta">Private SPA · Studio 2</p>
+          <h3>2 ore</h3>
+          <p class="card-format">Un circuito al mese</p>
+          <div class="card-rule"></div>
+          <ul>
+            <li>Endless pool, sauna, vasca fredda, massaggio</li>
+            <li>Studio riservato, nessun altro dentro</li>
+            <li>Tutti i vantaggi riservati</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20attivare%20la%20membership%20Private%20SPA%20(2%20ore%20al%20mese)." target="_blank" rel="noopener">Attiva Private SPA</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tl-wrap">
+        <div>
+          <p class="eyebrow">La domanda vera</p>
+          <p class="claim">E se questo mese non riesco a venire?</p>
+          <p style="color:var(--ink-soft)">È il motivo per cui la maggior parte delle persone non si abbona, ed è giusto che sia la prima cosa chiarita. La seduta non si paga a vuoto: resta lì.</p>
+        </div>
+        <div class="timeline">
+          <div class="tl"><span class="m">Mese 1</span><div><h3>La seduta si accredita</h3><p>Il primo del mese il credito è tuo, che tu venga o no.</p></div></div>
+          <div class="tl"><span class="m">Mese 2</span><div><h3>Hai ancora trenta giorni</h3><p>Il credito resta valido per tutto il mese successivo. In pratica hai sempre due mesi per usarlo.</p></div></div>
+          <div class="tl"><span class="m">Oltre</span><div><h3>Poi scade</h3><p>Trascorsi i sessanta giorni il credito si chiude. Te lo ricordo dieci giorni prima.</p></div></div>
+          <div class="tl"><span class="m">Sempre</span><div><h3>Puoi salire di durata</h3><p>Usi il credito da 60 su una seduta da 90 pagando solo la differenza.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Compresi in tutti i livelli</p>
+        <h2>I vantaggi riservati</h2>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit">
+          <h3>InBody ogni tre mesi</h3>
+          <p>Misurazione della composizione corporea con referto, inclusa. È il modo per sapere se sta funzionando invece di andare a sensazione.</p>
+        </div>
+        <div class="benefit">
+          <h3>Slot fisso riservato</h3>
+          <p>Lo stesso giorno e la stessa ora ogni mese, tenuti per te. Chi ha l'abbonamento prenota prima di tutti gli altri.</p>
+        </div>
+        <div class="benefit">
+          <h3>Ogni mese un trattamento diverso</h3>
+          <p>Drenaggio, decontratturante, thai, un'esperienza: lo decidiamo insieme in base a cosa serve quel giorno, non a cosa hai comprato.</p>
+        </div>
+        <div class="benefit">
+          <h3>Porti chi vuoi, due volte l'anno</h3>
+          <p>Due volte all'anno una persona a tua scelta prenota alle tue stesse condizioni. Il regalo più facile da fare.</p>
+        </div>
+        <div class="benefit">
+          <h3>Prima fila sulle serate</h3>
+          <p>Massaggio con pianoforte dal vivo e Massaggio Emozionale Cinematico: i posti si aprono prima agli abbonati.</p>
+        </div>
+        <div class="benefit">
+          <h3>Compleanno: un livello in più</h3>
+          <p>Nel mese del tuo compleanno la seduta sale di durata, senza differenza da pagare.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Domande sull'abbonamento</p>
+        <h2>Tutto quello che di solito si chiede</h2>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary>Quanto dura l'impegno?</summary>
+          <div class="answer"><p>Tre mesi minimo. Dal terzo mese in poi puoi disdire quando vuoi, con trenta giorni di preavviso. Nessuna penale, nessuna motivazione da dare.</p></div>
+        </details>
+        <details>
+          <summary>Se salto un mese perdo la seduta?</summary>
+          <div class="answer"><p>No. Il credito resta valido per il mese in cui è emesso più i trenta giorni successivi: hai sempre due mesi di tempo. Oltre i sessanta giorni scade, ma ti avviso dieci giorni prima.</p></div>
+        </details>
+        <details>
+          <summary>Posso scegliere il trattamento ogni volta?</summary>
+          <div class="answer"><p>Sì. L'abbonamento fissa la durata, non la tecnica. Ogni mese decidiamo insieme se lavorare sul drenaggio, sulle contratture o su un'esperienza, in base a cosa serve quel giorno.</p></div>
+        </details>
+        <details>
+          <summary>Posso passare da un livello all'altro?</summary>
+          <div class="answer"><p>Sì, dal mese successivo alla richiesta. Salire è immediato; scendere si può fare dopo i primi tre mesi.</p></div>
+        </details>
+        <details>
+          <summary>E se mi infortuno o sto male a lungo?</summary>
+          <div class="answer"><p>L'abbonamento si mette in pausa con una certificazione medica. Nel periodo di sospensione non paghi la quota e riprendi da dove eri.</p></div>
+        </details>
+        <details>
+          <summary>Cosa succede se decido che non fa per me?</summary>
+          <div class="answer"><p>Dopo tre mesi disdici con trenta giorni di preavviso, e i crediti che hai ancora restano validi fino alla loro scadenza naturale. Nessuno si tiene i tuoi soldi.</p></div>
+        </details>
+        <details>
+          <summary>Quanto costa?</summary>
+          <div class="answer"><p>Le quote mensili dei tre livelli sono nel catalogo, che ti mando su WhatsApp nella versione aggiornata. Prima di attivare, verifichiamo insieme se ti conviene davvero: sotto una certa frequenza è meglio la seduta singola, e preferisco dirtelo prima.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="terms">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">I termini, senza caratteri piccoli</p>
+        <h2>Condizioni dell'abbonamento</h2>
+      </div>
+      <div class="terms-grid">
+        <ul>
+          <li>Impegno minimo di tre mesi; poi disdetta libera con trenta giorni di preavviso.</li>
+          <li>Il credito vale per il mese di emissione più i trenta giorni successivi.</li>
+          <li>Spostamento dell'appuntamento gratuito fino a 12 ore prima.</li>
+        </ul>
+        <ul>
+          <li>Sospensione senza addebito con certificazione medica.</li>
+          <li>Cambio di livello dal mese successivo; verso il basso dopo i primi tre mesi.</li>
+          <li>Posti limitati: l'agenda è quella di una persona sola.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <img src="img/biosauna-notte.jpg" alt="Massaggio al collo nella sala biosauna, luce calda e bassa">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#E9C9B6">In una frase</p>
+      <h2>Il corpo cambia con la costanza, non con l'intensità.</h2>
+      <p>Se vieni almeno una volta al mese, l'abbonamento è semplicemente il modo più semplice di farlo.</p>
+      <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20informazioni%20sulla%20membership." target="_blank" rel="noopener">Chiedi della membership</a>
+    </div>
+  </section>
+
+  <div class="page-next"><a href="#percorsi"><small>Pagina 6 di 8</small>Percorsi →</a></div>
+</div>
+
+<!-- ================= PAGE 6 · PERCORSI ================= -->
+<div class="page" id="percorsi">
+
+  <section class="story">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#D89A7A">Una giornata, quattro stanze</p>
+      <p class="q">"Se volessi fare tutto questo da un'altra parte, dove dovrei andare?"</p>
+      <p class="a">Non ho saputo risponderle.</p>
+      <div class="day">
+        <p>
+          Una cliente ha prenotato quattro ore per sé. Un'ora sul futon giapponese, con l'acqua
+          di un ruscello come unico suono. Un'ora di drenaggio tecnico su un materasso d'acqua
+          calda. Un'ora in sala cinema, avvolta da un suono che si sente addosso più che nelle
+          orecchie. Un'ora di massaggio in acqua a 34 gradi.
+        </p>
+        <p class="last">Quattro ore, quattro stanze, le stesse due mani.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Cosa comprende un percorso</p>
+        <h2>Quello che ricevi, oltre al massaggio</h2>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit">
+          <h3>Slot riservato</h3>
+          <p>Il tuo orario resta tuo per tutta la durata del percorso. Niente caccia alla disponibilità ogni settimana.</p>
+        </div>
+        <div class="benefit">
+          <h3>BIA iniziale e finale</h3>
+          <p>Analisi InBody 770 all'inizio e al termine del ciclo, con report dei progressi consegnato a mano.</p>
+        </div>
+        <div class="benefit">
+          <h3>Tecnica calibrata sui dati</h3>
+          <p>Vodder, Renata França o Manuela Shala: il metodo si sceglie sui numeri, non a sensazione.</p>
+        </div>
+        <div class="benefit">
+          <h3>Accesso a tutte le otto sale</h3>
+          <p>Cinema, pianoforte, biosauna, sala emozionale, asiatica, fisioterapia, sauna, endless pool: il percorso si muove tra gli ambienti secondo l'obiettivo.</p>
+        </div>
+        <div class="benefit">
+          <h3>Durata e intensità flessibili</h3>
+          <p>60, 90 o 120 minuti. Mano leggera o profonda. Nessuna seduta è la copia della precedente.</p>
+        </div>
+        <div class="benefit">
+          <h3>Programmazione dell'intero ciclo</h3>
+          <p>Le sedute vengono calendarizzate insieme all'inizio: la costanza è metà del risultato.</p>
+        </div>
+        <div class="benefit">
+          <h3>Tecniche complementari incluse</h3>
+          <p>Coppettazione, maderoterapia, hot stones, taping elastico e theragun, integrabili su valutazione.</p>
+        </div>
+        <div class="benefit">
+          <h3>Approccio integrato mente-corpo</h3>
+          <p>Lettura tensione-emozione, respirazione e rilassamento profondo entrano nella seduta, non a parte.</p>
+        </div>
+        <div class="benefit">
+          <h3>Precedenza sulle esperienze</h3>
+          <p>Rituale Newyorkese, massaggio con pianoforte dal vivo, sala cinema Dolby Atmos: prima chi è già in percorso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formule">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">I percorsi 2026</p>
+        <h2>Quattro formule, un unico principio: misurare</h2>
+        <p>Dalla prova breve al percorso annuale. Ogni formula include la BIA InBody iniziale e finale.</p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <p class="card-meta">Percorso Reset</p>
+          <h3>5 sedute con BIA</h3>
+          <p class="card-format">5 × 60 minuti</p>
+          <div class="card-rule"></div>
+          <ul>
+            <li>Analisi InBody 770 iniziale</li>
+            <li>5 trattamenti calibrati sui risultati</li>
+            <li>Mix libero tra le sale dello studio</li>
+            <li>BIA finale di controllo con report progressi</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20sono%20interessato%2Fa%20al%20Percorso%20Reset%20(5%20sedute).%20Mi%20mandi%20il%20catalogo%3F" target="_blank" rel="noopener">Informazioni</a>
+        </div>
+
+        <div class="card">
+          <p class="card-meta">Percorso Drenante Intensivo</p>
+          <h3>10 sedute drenanti</h3>
+          <p class="card-format">10 × 60 minuti</p>
+          <div class="card-rule"></div>
+          <ul>
+            <li>BIA InBody iniziale e finale</li>
+            <li>10 sedute nei tre metodi: Vodder, Renata França, Manuela Shala</li>
+            <li>Opzione massaggio in biosauna per amplificare l'effetto</li>
+            <li>Programmi mirati su zona d'interesse o total body</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20sono%20interessato%2Fa%20al%20Percorso%20Drenante%20Intensivo%20(10%20sedute).%20Mi%20mandi%20il%20catalogo%3F" target="_blank" rel="noopener">Informazioni</a>
+        </div>
+
+        <div class="card featured">
+          <span class="tag">10 posti</span>
+          <p class="card-meta">Programma sperimentale 2026 · 2027</p>
+          <h3>Super Drenante</h3>
+          <p class="card-format">12 × 2 ore, una al mese</p>
+          <div class="card-rule"></div>
+          <ul>
+            <li>Nuoto in endless pool a controcorrente</li>
+            <li>Protocollo sauna finlandese fronte camino</li>
+            <li>Massaggio linfodrenante su lettino ad acqua</li>
+            <li>BIA InBody 770 a inizio e fine percorso</li>
+          </ul>
+          <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20sono%20interessato%2Fa%20al%20programma%20Super%20Drenante%20(12%20sedute%20da%202%20ore).%20Mi%20mandi%20il%20catalogo%3F" target="_blank" rel="noopener">Verifica disponibilità</a>
+        </div>
+
+        <div class="card featured">
+          <span class="tag">3 posti rimanenti</span>
+          <p class="card-meta">Annuale</p>
+          <h3>Benvenuti in Paradiso</h3>
+          <p class="card-format">52 sedute · una a settimana</p>
+          <div class="card-rule"></div>
+          <ul>
+            <li>Un massaggio da 60 minuti a settimana, per un anno</li>
+            <li>Qualsiasi tipologia, in qualsiasi sala</li>
+            <li>Slot fisso riservato per tutto l'anno</li>
+            <li>Programmazione e monitoraggio dell'intero percorso</li>
+          </ul>
+          <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20sono%20interessato%2Fa%20al%20percorso%20annuale%20Benvenuti%20in%20Paradiso.%20Mi%20mandi%20il%20catalogo%3F" target="_blank" rel="noopener">Verifica disponibilità</a>
+        </div>
+
+      </div>
+
+      <div class="price-note">
+        <p>
+          <strong>Sul sito non trovi i prezzi — e non è una dimenticanza.</strong>
+          Il listino cambia con le formule, le promozioni e i posti disponibili, e ogni
+          percorso va calibrato sulla persona. Scrivimi su WhatsApp: ricevi il catalogo
+          aggiornato in PDF, completo di sedute singole, circuiti di gruppo e percorsi.
+        </p>
+        <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20ricevere%20il%20catalogo%20aggiornato%20in%20PDF." target="_blank" rel="noopener">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.2-8.24 8.2zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+          <span>Scrivimi ora</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="background:var(--sand-2)">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Domande frequenti</p>
+        <h2>Prima di iniziare</h2>
+      </div>
+      <div class="faq-list">
+
+        <details open>
+          <summary>Perché sul sito non ci sono i prezzi?</summary>
+          <div class="answer"><p>Perché un percorso non è un prodotto a scaffale: cambia con la formula, con i posti disponibili e con quello che emerge dalla BIA iniziale. Il catalogo completo — sedute singole, supplementi, circuiti di gruppo e percorsi — te lo mando in PDF su WhatsApp, sempre nella versione aggiornata.</p></div>
+        </details>
+
+        <details>
+          <summary>Come funziona un percorso, concretamente?</summary>
+          <div class="answer"><p>Si parte con l'anamnesi e l'analisi InBody 770. Sui risultati costruiamo il ciclo: quante sedute, con quale metodo drenante, in quale sala e con quale intensità. Calendarizziamo tutti gli appuntamenti insieme, così lo slot resta tuo. A fine ciclo rimisuriamo e confrontiamo i dati.</p></div>
+        </details>
+
+        <details>
+          <summary>Devo già sapere di quale metodo ho bisogno?</summary>
+          <div class="answer"><p>No, e anzi è meglio di no. I tre metodi rispondono a esigenze diverse: il Vodder è linfodrenaggio sanitario per ritenzione patologica e gonfiori cronici, il Renata França è drenaggio brasiliano ad alta intensità con risultati visibili nella singola seduta, il Manuela Shala è lavoro profondo su addome e silhouette. La scelta la facciamo sui dati, non a sensazione.</p></div>
+        </details>
+
+        <details>
+          <summary>Quanto dura una seduta?</summary>
+          <div class="answer"><p>60, 90 o 120 minuti a seconda del trattamento. Ci sono anche sedute brevi da 40 minuti per il viso e per i trattamenti theragun localizzati. I circuiti di gruppo nello Studio 2 vanno da 2 a 3 ore e mezza.</p></div>
+        </details>
+
+        <details>
+          <summary>Posso scegliere la sala?</summary>
+          <div class="answer"><p>Sì, ed è il senso delle otto sale. Lo stesso massaggio in biosauna, sotto il cielo stellato o davanti allo schermo della sala cinema produce risposte diverse. La stanza la decidiamo insieme in base all'obiettivo della seduta; alcune esperienze — pianoforte dal vivo, sala cinema — sono su appuntamento dedicato.</p></div>
+        </details>
+
+        <details>
+          <summary>Posso spostare o annullare un appuntamento?</summary>
+          <div class="answer"><p>Lo spostamento è gratuito fino a 12 ore prima. Per annullamenti sotto le 12 ore è previsto il rimborso del 50% della seduta. In caso di mancata presentazione l'acconto non viene rimborsato.</p></div>
+        </details>
+
+        <details>
+          <summary>Come si conferma la prenotazione?</summary>
+          <div class="answer"><p>Per garantire lo slot riservato è richiesto un acconto al momento della prenotazione, che viene poi scalato dal totale al termine della seduta. Le modalità di pagamento e gli sconti previsti per chi salda in anticipo sono indicati nel catalogo.</p></div>
+        </details>
+
+        <details>
+          <summary>Posso vivere lo studio insieme a qualcuno?</summary>
+          <div class="answer"><p>Sì. Lo Studio 2 ospita circuiti per gruppi da 2 a 4 persone: endless pool, sauna finlandese fronte camino, vasca a 10 °C e massaggio su lettino ad acqua a calore controllato. Le formule vanno da 2 a 3 ore e mezza.</p></div>
+        </details>
+
+        <details>
+          <summary>Ci sono esperienze riservate a chi è già cliente?</summary>
+          <div class="answer"><p>Alcune sì. Il massaggio con pianoforte dal vivo è disponibile su prenotazione per chi è già stato in studio almeno una volta, con possibilità di abbinare una lezione privata di yoga. Il Massaggio Emozionale Cinematico in sala Dolby Atmos si svolge solo su appuntamento dedicato.</p></div>
+        </details>
+
+        <details>
+          <summary>Posso regalare un percorso o una seduta?</summary>
+          <div class="answer"><p>Sì. I regali possono essere acquistati in anticipo e beneficiano delle stesse condizioni previste per chi salda al momento della prenotazione. Scrivimi su WhatsApp e organizziamo il biglietto.</p></div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="terms">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">In breve</p>
+        <h2>Condizioni</h2>
+      </div>
+      <div class="terms-grid">
+        <ul>
+          <li>Per confermare la prenotazione è richiesto un acconto, poi scalato dal totale della seduta.</li>
+          <li>Spostamento dell'appuntamento gratuito fino a 12 ore prima.</li>
+          <li>Annullamento sotto le 12 ore: rimborso del 50% della seduta.</li>
+        </ul>
+        <ul>
+          <li>Mancata presentazione: l'acconto non viene rimborsato.</li>
+          <li>I percorsi a posti limitati si intendono fino a esaurimento disponibilità.</li>
+          <li>Listino, supplementi e promozioni sono riportati nel catalogo aggiornato, inviato su WhatsApp.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <img src="img/sauna-vasca.jpg" alt="Sauna finlandese e lettino ad acqua illuminato dello Studio 2, con camino acceso">
+    <div class="wrap">
+      <p class="eyebrow" style="color:#E9C9B6">Il passo successivo</p>
+      <h2>Scrivimi e ti mando il catalogo</h2>
+      <p>
+        Due righe su WhatsApp con quello che cerchi. Ti rispondo io, ti mando il catalogo
+        aggiornato in PDF e, se vuoi, fissiamo la prima analisi InBody.
+      </p>
+      <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20ricevere%20il%20catalogo%20aggiornato%20in%20PDF." target="_blank" rel="noopener">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.2-8.24 8.2zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+        <span>334 79 18 516</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="page-next"><a href="#yoga"><small>Pagina 7 di 8</small>Al piano di sopra →</a></div>
+</div>
+
+<!-- ================= PAGE 7 · AL PIANO DI SOPRA ================= -->
+<div class="page" id="yoga">
+
+  <section>
+    <div class="wrap">
+      <div class="split">
+        <div class="split-media"><img src="img/yoga-shala.jpg" alt="Linda Tso in bhujapidasana sul tappetino, nella shala al piano di sopra: parquet lucido e tende chiare"></div>
+        <div class="split-body">
+          <p class="eyebrow">Al piano di sopra</p>
+          <p class="quote">Sopra lo studio c'è una shala.</p>
+          <p>
+            Ci insegna Linda Tso, Ashtanga yoga dal 2010, formata con Manju P. Jois.
+            Una classe di gruppo il giovedì sera e lezioni private su appuntamento.
+            Stessa porta di Vicolo Magellano 2/A, una rampa di scale: si sale per
+            praticare, si scende per lasciar andare.
+          </p>
+          <ul class="facts">
+            <li><b>Giovedì</b> 19.00 – 20.30, classe di gruppo, tutti i livelli</li>
+            <li><b>Private</b> Su appuntamento, in shala o a domicilio</li>
+            <li><b>Chi insegna</b> Linda Tso · <a href="https://www.yogaluce.it" target="_blank" rel="noopener">yogaluce.it</a> · <a href="https://www.instagram.com/yogaluce/" target="_blank" rel="noopener">@yogaluce</a></li>
+            <li><b>Prezzi</b> Si concordano su WhatsApp, insieme, per l'occasione</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--sand-2)">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Due piani, tre formule</p>
+        <h2>Il calore che fai di sopra, lo finisci di sotto.</h2>
+        <p>L'Ashtanga scalda il corpo dall'interno. Quello che serve dopo non è altra fatica: è sauna, freddo, mani, silenzio. Nell'ordine giusto.</p>
+      </div>
+      <div class="treat-grid">
+        <div class="treat">
+          <p class="t-meta">Ogni giovedì</p>
+          <h3>Yoga, poi sauna</h3>
+          <p>Alle 19.00 la classe con Linda. Alle 20.45 scendi: sauna Harvia davanti al camino a legna, vasca a 10 °C per chi vuole, doccia. A casa alle 21.30. Si prenota con un messaggio a Linda, per tutti e due i piani.</p>
+          <p style="margin-top:18px"><a class="btn btn-ghost" style="padding:12px 20px; font-size:12px" href="https://wa.me/393932131981?text=Ciao%20Linda%2C%20gioved%C3%AC%20vorrei%20fare%20yoga%20e%20poi%20la%20sauna." target="_blank" rel="noopener">Prenota con Linda</a></p>
+        </div>
+        <div class="treat">
+          <p class="t-meta">Su richiesta · anche come regalo</p>
+          <h3>Mezza giornata</h3>
+          <p>Lezione privata di yoga, poi sauna, vasca fredda e per ultimo il massaggio — la sala la scegliamo insieme — e silenzio davanti al camino. Tre ore e mezza, per una o due persone. Ci organizziamo io e Linda per la data.</p>
+          <p style="margin-top:18px"><a class="btn btn-primary" style="padding:12px 20px; font-size:12px" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20organizzare%20la%20mezza%20giornata%20yoga%20%2B%20spa." target="_blank" rel="noopener">Scrivimi per la data</a></p>
+        </div>
+        <div class="treat">
+          <p class="t-meta">Un sabato al mese · in programmazione</p>
+          <h3>Il sabato delle mamme</h3>
+          <p>Due o tre mamme fanno il circuito dello Studio 2 — biosauna, endless pool, sauna — mentre i bambini, dai quattro anni, sono di sopra con Linda per quaranta minuti di yoga giocato. Novanta minuti per voi. Vale anche per i papà.</p>
+          <p style="margin-top:18px"><a class="btn btn-primary" style="padding:12px 20px; font-size:12px" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20informazioni%20sul%20sabato%20delle%20mamme." target="_blank" rel="noopener">Chiedi la prossima data</a></p>
+        </div>
+      </div>
+      <div class="price-note">
+        <p><strong>Perché dopo e non prima.</strong> Praticare con il corpo già rilassato dal calore aumenta il rischio di forzare le articolazioni. La sequenza corretta è pratica, sauna, freddo, massaggio: ogni passaggio prepara il successivo.</p>
+        <a class="btn btn-ghost" href="#sale">Le sale dello Studio 2</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="split reverse">
+        <div class="split-media"><img src="img/yoga-linda.webp" alt="Linda seduta a gambe incrociate su una balla di fieno, mani unite, cielo blu con nuvole"></div>
+        <div class="split-body">
+          <p class="eyebrow">Quando ti mando di sopra</p>
+          <p class="quote">Il massaggio scioglie. La pratica insegna a non ricontrarsi.</p>
+          <p>
+            Se in un percorso drenante vedo un respiro corto e una postura chiusa, ti mando
+            da Linda per una lezione privata: lavora sulla causa, non sul sintomo. Se in shala
+            anche o spalle bloccano la pratica da mesi, Linda ti manda da me: un'analisi InBody
+            e una seduta di massoterapia dicono cosa sta succedendo davvero.
+          </p>
+          <p>
+            Il sabato delle mamme nasce da <a href="#libri" style="text-decoration:none; border-bottom:1px solid var(--line)"><i>I suoi primi 2000 giorni</i></a>: i primi cinque anni si
+            costruiscono anche sul tempo che i genitori riescono a tenere per sé.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-next"><a href="#chi-sono"><small>Pagina 8 di 8</small>Chi sono &amp; contatti →</a></div>
+</div>
+
+<!-- ================= PAGE 8 · CHI SONO & CONTATTI ================= -->
+<div class="page" id="chi-sono">
+
+  <section>
+    <div class="wrap">
+      <div class="split reverse">
+        <div class="split-media"><img src="img/nicola-ritratto.jpg" alt="Nicola Messina sorride in camice blu davanti all'insegna al neon Detensionami"></div>
+        <div class="split-body">
+          <p class="eyebrow">Chi sono</p>
+          <p class="quote">Nicola Messina</p>
+          <p>
+            Massofisioterapista e laureato in scienze psicologiche, autore di libri di
+            carattere scientifico, in formazione magistrale in psicologia clinica.
+          </p>
+          <p>
+            Ho cominciato con il massaggio a vent'anni e ho passato i successivi dieci
+            anni tra Londra e New York, studiando e praticando discipline diverse — dal
+            massaggio terapeutico al lavoro emozionale in deprivazione sensoriale. Sono
+            rientrato a Padova nel 2020 portando un approccio integrato in cui il corpo
+            non viene mai trattato separatamente dalla mente.
+          </p>
+          <ul class="facts">
+            <li><b>Qualifica</b> Massofisioterapista · Scienze e Tecniche Psicologiche · LM in Psicologia Clinica in corso</li>
+            <li><b>Drenaggio</b> Operatore certificato Vodder, Renata França e Manuela Shala</li>
+            <li><b>Primato</b> Unico studio in Veneto con qualifica sanitaria a offrire tutti e tre i metodi</li>
+            <li><b>Formazione</b> Oltre 30 attestati olistici, dal massaggio infantile AIMI alle tecniche californiane e thailandesi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="libri" style="background:var(--sand-2)">
+    <div class="wrap">
+      <div class="split">
+        <div class="split-media"><img src="img/libro.jpg" alt="Il libro Il potere della cacca di Nicola Messina su un tavolo di legno"></div>
+        <div class="split-body">
+          <p class="eyebrow">Pubblicazioni 2026</p>
+          <p class="quote">Sei libri per continuare a casa il percorso iniziato qui.</p>
+          <p>
+            Ogni titolo approfondisce un aspetto del lavoro che faccio in studio, con le
+            fonti scientifiche dietro a ciò che senti sul lettino.
+          </p>
+          <ul class="books">
+            <li>
+              <span class="when">Maggio</span>
+              <div><h3>Il potere della cacca</h3><p>Cos'è la psicobiotica: psicologia e nutrizione si incrociano su oltre 360 fonti bibliografiche.</p></div>
+            </li>
+            <li>
+              <span class="when">Giugno</span>
+              <div><h3>Timeline</h3><p>Dove sei adesso e dove stai andando: tecniche psicologiche per sviluppare consapevolezza.</p></div>
+            </li>
+            <li>
+              <span class="when">Agosto</span>
+              <div><h3>I suoi primi 2000 giorni</h3><p>Neurosviluppo, attaccamento e microbiota nei primi cinque anni di vita.</p></div>
+            </li>
+            <li>
+              <span class="when">Settembre</span>
+              <div><h3>Genitori 3.0</h3><p>Neuroscienze, attaccamento e mondo digitale: la cassetta degli attrezzi per chi educa oggi.</p></div>
+            </li>
+            <li>
+              <span class="when">Ottobre<small>in uscita</small></span>
+              <div><h3>Il monaco &amp; il microbioma</h3><p>Meditazione, nervo vago e asse intestino-cervello.</p></div>
+            </li>
+            <li>
+              <span class="when">Dicembre<small>in uscita</small></span>
+              <div><h3>Ok, quindi anche tu o tuo figlio avete l'ADHD</h3><p>Riconoscere la neurodivergenza, conviverci e trasformarla in risorsa quotidiana.</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contatti">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Dove siamo</p>
+        <h2>Sant'Agostino di Albignasego, alle porte di Padova</h2>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <h3>Lo studio</h3>
+          <p>Due ambienti distinti. Nello <b>Studio 1</b> le analisi InBody e i trattamenti manuali: biosauna, sala emozionale, sala asiatica, fisioterapia, cinema e pianoforte. Nello <b>Studio 2</b> i circuiti con endless pool, sauna finlandese e vasca fredda.</p>
+          <p>A due minuti a piedi dalla fermata Modigliani (bus 24). L'indirizzo esatto e le indicazioni arrivano insieme alla conferma dell'appuntamento.</p>
+        </div>
+        <div>
+          <h3>Contatti</h3>
+          <ul class="contact-list">
+            <li><a href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20ricevere%20il%20catalogo%20aggiornato%20in%20PDF." target="_blank" rel="noopener">334 79 18 516 <span>WhatsApp</span></a></li>
+            <li><a href="https://www.instagram.com/detensionami/" target="_blank" rel="noopener">@detensionami <span>Instagram</span></a></li>
+            <li><a href="https://www.detensionami.it" target="_blank" rel="noopener">detensionami.it <span>Sito</span></a></li>
+            <li><a href="https://www.drenami.it" target="_blank" rel="noopener">drenami.it <span>Drenaggio</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-next"><a href="#home"><small>Torna all'inizio</small>Home →</a></div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="foot-logo" href="#home">DETENSIONAMI</a>
+        <p>Mente · Corpo · Anima</p>
+        <p>Non è solo un massaggio. È un percorso costruito sul tuo corpo, misurato nei suoi cambiamenti.</p>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li>Sant'Agostino di Albignasego</li>
+          <li>Padova</li>
+          <li><a href="#sale">Le otto sale</a></li>
+          <li><a href="#drenami">Drenami</a></li>
+          <li><a href="#trattamenti">I trattamenti</a></li>
+          <li><a href="#yoga">Al piano di sopra: yoga</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Membership &amp; percorsi</h4>
+        <ul>
+          <li><a href="#membership">Membership</a></li>
+          <li><a href="#percorsi">Percorso Reset</a></li>
+          <li><a href="#percorsi">Drenante Intensivo</a></li>
+          <li><a href="#percorsi">Super Drenante</a></li>
+          <li><a href="#percorsi">Benvenuti in Paradiso</a></li>
+          <li><a href="#libri">I libri</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contatti</h4>
+        <ul>
+          <li><a href="https://wa.me/393347918516" target="_blank" rel="noopener">WhatsApp · 334 79 18 516</a></li>
+          <li><a href="https://www.instagram.com/detensionami/" target="_blank" rel="noopener">Instagram · @detensionami</a></li>
+          <li><a href="https://www.detensionami.it" target="_blank" rel="noopener">detensionami.it</a></li>
+          <li><a href="https://www.drenami.it" target="_blank" rel="noopener">drenami.it</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Detensionami · Nicola Messina · <a href="../">La sala del sale</a></span>
+      <span>I trattamenti descritti hanno finalità di benessere e non sostituiscono il parere medico.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="bottom-bar" id="bottomBar">
+  <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20ricevere%20il%20catalogo%20aggiornato%20in%20PDF." target="_blank" rel="noopener">
+    <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.2-8.24 8.2zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+    <span>Ricevi il catalogo su WhatsApp</span>
+  </a>
+</div>
+
+<script>
+(function(){
+  var PAGES = ['home','sale','drenami','trattamenti','membership','percorsi','yoga','chi-sono'];
+  // sub-anchors that live inside a page
+  var PARENT = {metodo:'home', inbody:'trattamenti', livelli:'membership', formule:'percorsi', faq:'percorsi', libri:'chi-sono', contatti:'chi-sono', top:'home'};
+  var mq = window.matchMedia('(max-width:900px)');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var body = document.body;
+  var header = document.querySelector('.site-header');
+  var menuBtn = document.getElementById('menuBtn');
+  var menuClose = document.getElementById('menuClose');
+  var bar = document.getElementById('bottomBar');
+  var current = null;
+
+  function currentHash(){ return (location.hash || '').replace('#',''); }
+  function pageFor(h){ if (PAGES.indexOf(h) > -1) return h; return PARENT[h] || 'home'; }
+  function headerH(){ return header ? header.offsetHeight : 0; }
+
+  /* ---- menu ---- */
+  function closeMenu(){ body.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); }
+  function openMenu(){ body.classList.add('menu-open'); menuBtn.setAttribute('aria-expanded','true'); }
+  menuBtn.addEventListener('click', function(){ body.classList.contains('menu-open') ? closeMenu() : openMenu(); });
+  menuClose.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+
+  /* ---- eased scrolling: gentle start and end, never faster than a slow hand; 1.2–2 s depending on distance ---- */
+  var anim = null, animating = false;
+  function easeInOutSine(t){ return -(Math.cos(Math.PI * t) - 1) / 2; }
+  function cancelAnim(){ if (anim){ cancelAnimationFrame(anim); anim = null; } animating = false; }
+  function scrollToY(y, done){
+    cancelAnim();
+    y = Math.max(0, y);
+    var start = window.scrollY || 0, dist = y - start;
+    if (reduce || Math.abs(dist) < 2){ window.scrollTo(0, y); if (done) done(); return; }
+    var dur = Math.min(6000, Math.max(3600, Math.abs(dist) * 3.6));
+    var t0 = null;
+    animating = true;
+    function step(ts){
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      window.scrollTo(0, start + dist * easeInOutSine(p));
+      if (p < 1){ anim = requestAnimationFrame(step); }
+      else { anim = null; animating = false; if (done) done(); }
+    }
+    anim = requestAnimationFrame(step);
+  }
+  function scrollToEl(el, done){
+    var y = el.getBoundingClientRect().top + (window.scrollY || 0) - headerH() - 8;
+    scrollToY(y, done);
+  }
+  // a touch, wheel or key press hands control back to the user
+  ['wheel','touchstart','keydown'].forEach(function(ev){ window.addEventListener(ev, cancelAnim, {passive:true}); });
+
+  /* ---- pages ---- */
+  function showBar(){ if (bar) bar.classList.remove('is-hidden'); }
+  function layout(){
+    if (!mq.matches){ body.classList.remove('paged'); return; }
+    body.classList.add('paged');
+    var p = pageFor(currentHash());
+    PAGES.forEach(function(id){ document.getElementById(id).classList.toggle('active', id === p); });
+    current = p;
+  }
+  function go(h, opts){
+    opts = opts || {};
+    closeMenu();
+    var p = pageFor(h);
+    var target = document.getElementById(h);
+    var switched = false;
+    if (mq.matches){
+      body.classList.add('paged');
+      switched = (current !== p);
+      PAGES.forEach(function(id){ document.getElementById(id).classList.toggle('active', id === p); });
+      current = p;
+    } else {
+      body.classList.remove('paged');
+    }
+    if (opts.push){ history.pushState(null, '', '#' + h); }
+    var sub = target && h !== p;           // anchor inside a page (e.g. #livelli)
+    if (opts.instant){
+      if (mq.matches && !sub){ window.scrollTo(0, 0); }
+      else if (target){ window.scrollTo(0, target.getBoundingClientRect().top + (window.scrollY||0) - headerH() - 8); }
+      showBar(); return;
+    }
+    if (mq.matches && switched){
+      // a new page opens at the top, then glides down to the anchor if there is one
+      window.scrollTo(0, 0);
+      if (sub) scrollToEl(target, showBar); else showBar();
+    } else if (mq.matches && !sub){
+      scrollToY(0, showBar);
+    } else if (target){
+      scrollToEl(target, showBar);
+    } else {
+      scrollToY(0, showBar);
+    }
+  }
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var h = a.getAttribute('href').slice(1);
+    if (!h) return;
+    e.preventDefault();
+    go(h, {push: true});
+  });
+  window.addEventListener('popstate', function(){ go(currentHash() || 'home', {}); });
+  if (mq.addEventListener) mq.addEventListener('change', layout); else mq.addListener(layout);
+
+  layout();
+  go(currentHash() || 'home', {instant: true});
+
+  /* ---- bottom bar: hide on scroll down, show on scroll up ---- */
+  var last = 0;
+  window.addEventListener('scroll', function(){
+    if (!bar || !mq.matches || animating) return;
+    var y = window.scrollY || 0;
+    bar.classList.toggle('is-hidden', y > last && y > 140);
+    last = y;
+  }, {passive:true});
+})();
+</script>
+
+</body></html>
