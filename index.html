@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Detensionami — Sala Emozionale</title>
+<meta name="description" content="Otto sale, un solo massaggio: il tuo. Detensionami, Sant'Agostino di Albignasego, Padova.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- pre-home: il lettino con il sale ---------- */
+  .prehome{position:relative; height:100svh; min-height:560px; overflow:hidden; background:#0e0907; color:#fff; touch-action:pan-y}
+  .prehome img.room{
+    position:absolute; left:var(--img-x,0); top:var(--img-y,0); width:calc(941px * var(--img-scale,1)); height:calc(1671px * var(--img-scale,1));
+    max-width:none; pointer-events:none; user-select:none;
+  }
+  .prehome canvas{position:absolute; inset:0; display:block; touch-action:pan-y}
+  .prehome .top{
+    position:absolute; left:0; right:0; top:0; z-index:3; display:flex; justify-content:space-between; align-items:center;
+    padding:calc(16px + env(safe-area-inset-top)) 22px 0;
+  }
+  .prehome .logo{color:var(--sand); font-size:14px}
+  .prehome .top .btn{padding:11px 16px; font-size:11px}
+  .prehome .caption{
+    position:absolute; left:0; right:0; top:calc(84px + env(safe-area-inset-top)); z-index:3; text-align:center; pointer-events:none;
+    text-shadow:0 1px 14px rgba(0,0,0,.8); padding:0 22px;
+  }
+  .prehome .scroll-cue{
+    position:absolute; left:0; right:0; bottom:calc(14px + env(safe-area-inset-bottom)); z-index:3; text-align:center; pointer-events:none;
+    font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.75); text-shadow:0 1px 10px rgba(0,0,0,.9);
+  }
+  .prehome .scroll-cue::after{content:'↓'; display:block; margin-top:4px; animation:bob 1.6s ease-in-out infinite}
+  .prehome .caption .eyebrow{color:var(--blush); margin-bottom:8px}
+  .prehome .caption h1{font-size:clamp(28px,7vw,52px); color:#fff; max-width:14ch; margin:0 auto}
+  .prehome .caption p.hint{margin:12px auto 0; font-size:14px; color:rgba(255,255,255,.8); max-width:30ch}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* ---------- il messaggio ---------- */
+  .scold{
+    position:absolute; inset:0; z-index:4; display:flex; align-items:center; justify-content:center; padding:28px;
+    background:rgba(14,9,7,.72); backdrop-filter:blur(6px); opacity:0; pointer-events:none; transition:opacity .6s ease;
+  }
+  .scold.show{opacity:1; pointer-events:auto}
+  .scold .box{max-width:520px; text-align:center}
+  .scold .box p.eyebrow{color:var(--clay-light)}
+  .scold h2{color:var(--sand); font-size:clamp(30px,7vw,54px); margin-bottom:26px}
+  .scold .actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .scold .btn-light{border-color:rgba(255,255,255,.4)}
+
+  /* ---------- riassunto studio ---------- */
+  .intro-band{padding:clamp(60px,9vw,110px) 0}
+  .room-grid .room img{aspect-ratio:4/5}
+  .site-footer{padding-top:60px}
+  @media(max-width:900px){ .nav-links{display:none} }
+</style>
+</head>
+<body>
+
+<!-- ================= PRE-HOME ================= -->
+<header class="prehome" id="prehome">
+  <img class="room" src="img/lettino-vuoto.webp" alt="Sala emozionale: lettino LEMI Aemotion sotto il cielo stellato, luce rossa">
+  <canvas id="salt" aria-hidden="true"></canvas>
+
+  <div class="top">
+    <a class="logo" href="#studio">DETENSIONAMI</a>
+    <a class="btn btn-light" href="#studio">Entra nello studio</a>
+  </div>
+
+  <div class="caption">
+    <p class="eyebrow">Sala emozionale · sale rosa caldo</p>
+    <h1>Otto sale. Un solo massaggio: il tuo.</h1>
+  </div>
+  <div class="scroll-cue">Scorri</div>
+
+  <div class="scold" id="scold" role="dialog" aria-live="polite">
+    <div class="box">
+      <p class="eyebrow" id="scoldEyebrow">Nicola</p>
+      <h2 id="scoldText">Finito di fare casino? Secondo me hai bisogno di rilassarti.</h2>
+      <div class="actions">
+        <a class="btn btn-primary" href="#studio" id="scoldGo">Vieni a detensionarti</a>
+        <button class="btn btn-light" type="button" id="scoldReset">Rimetti il sale</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="studio">
+
+  <div class="strip">
+    <div class="wrap">
+      <span>Sant'Agostino di Albignasego · Padova</span>
+      <span>Otto sale, otto universi</span>
+      <span>Analisi InBody 770 inclusa</span>
+    </div>
+  </div>
+
+  <section class="intro-band">
+    <div class="wrap">
+      <div class="split">
+        <div class="split-body intro">
+          <p class="eyebrow">Lo studio</p>
+          <p>Lo stesso massaggio, fatto immerso nell'acqua a 34 °C, dentro una sauna o sotto un cielo stellato, non è lo stesso massaggio.</p>
+          <p>Ogni percorso parte da un'analisi InBody 770 e si costruisce sui numeri: sala, metodo e intensità si scelgono insieme, seduta per seduta. Le mani sono sempre le stesse. Otto sale, una persona.</p>
+        </div>
+        <div class="split-media"><img src="img/hero-mani.jpg" alt="Nicola Messina esegue un drenaggio nella sala biosauna"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sale">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" style="color:var(--clay-light)">Le sale</p>
+        <h2>Otto sale. Otto universi.</h2>
+        <p>La stanza si sceglie insieme, seduta per seduta.</p>
+      </div>
+      <div class="room-grid">
+        <div class="room">
+          <img src="img/emozionale.jpg" alt="Sala emozionale con lettino su sale rosa e cielo stellato">
+          <h3>Sala Emozionale</h3>
+          <p class="room-tag">Sale rosa · cielo stellato</p>
+          <p>Lettino su sale rosa caldo, inclinabile di 30 gradi. Aromi, sound design e ritmo del massaggio a tempo di musica.</p>
+        </div>
+        <div class="room">
+          <img src="img/biosauna-trattamento.jpg" alt="Massaggio nella sala biosauna">
+          <h3>Massaggio in biosauna</h3>
+          <p class="room-tag">30–43 °C · drenaggio amplificato</p>
+          <p>Calore e vasodilatazione durante il massaggio. La perdita di liquidi si misura con l'InBody prima e dopo.</p>
+        </div>
+        <div class="room">
+          <img src="img/cinema.jpg" alt="Sala cinema con lettino davanti allo schermo">
+          <h3>Massaggio emozionale nel cinema</h3>
+          <p class="room-tag">Dolby Atmos · 14 casse + 4 sub</p>
+          <p>Il corpo viene massaggiato seguendo frequenze musicali che agiscono sul sistema nervoso autonomo.</p>
+        </div>
+        <div class="room">
+          <img src="img/pianoforte.jpg" alt="Sala con pianoforte e camino acceso">
+          <h3>Musicoterapia con pianoforte</h3>
+          <p class="room-tag">Pianoforte reale · suona da solo</p>
+          <p>Massaggio accompagnato da musica classica eseguita da un pianoforte vero, davanti al camino.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--sand-2)">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Quello che fa la differenza</p>
+        <h2>Misuriamo, non fotografiamo.</h2>
+      </div>
+      <div class="treat-grid">
+        <div class="treat">
+          <p class="t-meta">InBody 770</p>
+          <h3>Prima di toccarti, ti ascoltiamo</h3>
+          <p>Acqua intra ed extracellulare, massa magra e grassa, equilibrio destra-sinistra arto per arto. Il numero lo leggi tu, sullo stesso strumento, a distanza di un'ora.</p>
+        </div>
+        <div class="treat">
+          <p class="t-meta">Drenaggio · tre metodi certificati</p>
+          <h3>Vodder · Renata França · Manuela Shala</h3>
+          <p>Unico studio in Veneto con qualifica sanitaria ad averli tutti e tre. Il metodo lo dicono i dati, non la sensazione.</p>
+        </div>
+        <div class="treat">
+          <p class="t-meta">Studio 2 · private spa</p>
+          <h3>Endless pool, sauna, vasca fredda</h3>
+          <p>Nuoto controcorrente per aprire il sistema linfatico, sauna finlandese fronte camino, poi il massaggio in acqua a 34 °C.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <img src="img/sauna-vasca.jpg" alt="Sauna finlandese e lettino ad acqua dello Studio 2">
+    <div class="wrap">
+      <p class="eyebrow" style="color:var(--blush)">Il passo successivo</p>
+      <h2>Scrivimi e ti mando il catalogo</h2>
+      <p>Due righe su WhatsApp con quello che cerchi. Ti rispondo io e, se vuoi, fissiamo la prima analisi InBody.</p>
+      <a class="btn btn-primary" href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20ricevere%20il%20catalogo%20aggiornato%20in%20PDF." target="_blank" rel="noopener">334 79 18 516</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>© 2026 Detensionami · Nicola Messina</span>
+      <span><a href="#prehome">Rivedi la sala</a> · I trattamenti hanno finalità di benessere e non sostituiscono il parere medico.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="salt.js"></script>
+<script>
+(function () {
+  // frasi diverse a ogni visita
+  var PHRASES = [
+    ['Nicola', 'Finito di fare casino? Secondo me hai bisogno di rilassarti.'],
+    ['Nicola', 'Ti vedo stressato. Vieni a detensionarti.'],
+    ['Nicola', 'Il sale lo rimetto a posto io. Tu pensa a respirare.'],
+    ['Nicola', 'Ok, hai vinto. Ora tocca a me: un\'ora in sala emozionale.'],
+    ['Nicola', 'Terza volta che svuoti il lettino. Ti aspetto, davvero.']
+  ];
+  var visit = 0;
+  try { visit = parseInt(localStorage.getItem('dt-visit') || '0', 10); localStorage.setItem('dt-visit', String(visit + 1)); } catch (e) {}
+  var phrase = PHRASES[Math.min(visit, PHRASES.length - 1)];
+  document.getElementById('scoldEyebrow').textContent = phrase[0];
+  document.getElementById('scoldText').textContent = phrase[1];
+
+  var scold = document.getElementById('scold'), shown = false;
+  Salt.onChange(function (fractionOut) {
+    if (shown) return;
+    // solo quando almeno metà del sale è fuori dal lettino
+    if (fractionOut >= 0.5) { shown = true; scold.classList.add('show'); }
+  });
+  document.getElementById('scoldReset').addEventListener('click', function () {
+    scold.classList.remove('show'); shown = false; Salt.reset();
+  });
+  document.getElementById('scoldGo').addEventListener('click', function () { scold.classList.remove('show'); });
+
+  // la simulazione gira solo quando la pre-home è visibile
+  var io = new IntersectionObserver(function (en) { en[0].isIntersecting ? Salt.resume() : Salt.pause(); }, { threshold: 0.05 });
+  io.observe(document.getElementById('prehome'));
+})();
+</script>
+</body>
+</html>
