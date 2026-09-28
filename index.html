@@ -198,8 +198,8 @@
   </div>
 </footer>
 
-<script src="salt.js"></script>
-<script src="biosauna.js"></script>
+<script src="salt.js?v=3"></script>
+<script src="biosauna.js?v=3"></script>
 <script>
 (function () {
   // ogni accesso apre una sala a caso (o quella scelta con ?sala=...)
@@ -230,7 +230,11 @@
   };
   var ids = Object.keys(ROOMS);
   var want = new URLSearchParams(location.search).get('sala');
-  var id = ROOMS[want] ? want : ids[(Math.random() * ids.length) | 0];
+  // mai la stessa sala due volte di fila
+  var last = null; try { last = localStorage.getItem('dt-last-room'); } catch (e) {}
+  var pool = ids.length > 1 ? ids.filter(function (k) { return k !== last; }) : ids;
+  var id = ROOMS[want] ? want : pool[(Math.random() * pool.length) | 0];
+  try { localStorage.setItem('dt-last-room', id); } catch (e) {}
   var cfg = ROOMS[id], mod = window.Rooms[id];
 
   var stage = document.getElementById('prehome'), canvas = document.getElementById('salt'), img = stage.querySelector('img.room');
