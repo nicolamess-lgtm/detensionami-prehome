@@ -57,7 +57,7 @@
 
 <!-- ================= PRE-HOME ================= -->
 <header class="prehome" id="prehome">
-  <img class="room" src="img/lettino-vuoto.webp" alt="Sala emozionale: lettino LEMI Aemotion sotto il cielo stellato, luce rossa">
+  <img class="room" src="" alt="">
   <canvas id="salt" aria-hidden="true"></canvas>
 
   <div class="top">
@@ -199,36 +199,63 @@
 </footer>
 
 <script src="salt.js"></script>
+<script src="biosauna.js"></script>
 <script>
 (function () {
-  // frasi diverse a ogni visita
-  var PHRASES = [
-    ['Nicola', 'Finito di fare casino? Secondo me hai bisogno di rilassarti.'],
-    ['Nicola', 'Ti vedo stressato. Vieni a detensionarti.'],
-    ['Nicola', 'Il sale lo rimetto a posto io. Tu pensa a respirare.'],
-    ['Nicola', 'Ok, hai vinto. Ora tocca a me: un\'ora in sala emozionale.'],
-    ['Nicola', 'Terza volta che svuoti il lettino. Ti aspetto, davvero.']
-  ];
-  var visit = 0;
-  try { visit = parseInt(localStorage.getItem('dt-visit') || '0', 10); localStorage.setItem('dt-visit', String(visit + 1)); } catch (e) {}
-  var phrase = PHRASES[Math.min(visit, PHRASES.length - 1)];
-  document.getElementById('scoldEyebrow').textContent = phrase[0];
-  document.getElementById('scoldText').textContent = phrase[1];
+  // ogni accesso apre una sala a caso (o quella scelta con ?sala=...)
+  var ROOMS = {
+    emozionale: {
+      eyebrow: 'Sala emozionale · sale rosa caldo',
+      alt: 'Sala emozionale: lettino LEMI Aemotion sotto il cielo stellato, luce rossa',
+      reset: 'Rimetti il sale',
+      phrases: [
+        'Finito di fare casino? Secondo me hai bisogno di rilassarti.',
+        'Ti vedo stressato. Vieni a detensionarti.',
+        'Il sale lo rimetto a posto io. Tu pensa a respirare.',
+        'Ok, hai vinto. Ora tocca a me: un\'ora in sala emozionale.',
+        'Terza volta che svuoti il lettino. Ti aspetto, davvero.'
+      ]
+    },
+    biosauna: {
+      eyebrow: 'Sala biosauna · pietre calde',
+      alt: 'Cabina biosauna in legno con lettino, telo e pietre calde',
+      reset: 'Rimetti le pietre',
+      phrases: [
+        'Hai finito di tirare sassi? Sdraiati, il vapore lo faccio io.',
+        'Le pietre servono calde sulla schiena, non per terra. Vieni.',
+        'Ti vedo stressato. Trenta gradi e due mani: vieni a detensionarti.',
+        'Ok, la stufa è piena. Ora tocca a te: un\'ora in biosauna.'
+      ]
+    }
+  };
+  var ids = Object.keys(ROOMS);
+  var want = new URLSearchParams(location.search).get('sala');
+  var id = ROOMS[want] ? want : ids[(Math.random() * ids.length) | 0];
+  var cfg = ROOMS[id], mod = window.Rooms[id];
 
+  var stage = document.getElementById('prehome'), canvas = document.getElementById('salt'), img = stage.querySelector('img.room');
+  img.src = mod.photo; img.alt = cfg.alt;
+  document.querySelector('.caption .eyebrow').textContent = cfg.eyebrow;
+  document.getElementById('scoldReset').textContent = cfg.reset;
+
+  // frasi diverse a ogni visita, per sala
+  var visit = 0;
+  try { visit = parseInt(localStorage.getItem('dt-visit-' + id) || '0', 10); localStorage.setItem('dt-visit-' + id, String(visit + 1)); } catch (e) {}
+  document.getElementById('scoldText').textContent = cfg.phrases[Math.min(visit, cfg.phrases.length - 1)];
+
+  var room = mod.init(canvas, stage);
   var scold = document.getElementById('scold'), shown = false;
-  Salt.onChange(function (fractionOut) {
+  room.onChange(function (mess) {
     if (shown) return;
-    // solo quando almeno metà del sale è fuori dal lettino
-    if (fractionOut >= 0.5) { shown = true; scold.classList.add('show'); }
+    if (mess >= 0.5) { shown = true; scold.classList.add('show'); }   // almeno metà del "casino" possibile
   });
-  document.getElementById('scoldReset').addEventListener('click', function () {
-    scold.classList.remove('show'); shown = false; Salt.reset();
-  });
+  document.getElementById('scoldReset').addEventListener('click', function () { scold.classList.remove('show'); shown = false; room.reset(); });
   document.getElementById('scoldGo').addEventListener('click', function () { scold.classList.remove('show'); });
 
   // la simulazione gira solo quando la pre-home è visibile
-  var io = new IntersectionObserver(function (en) { en[0].isIntersecting ? Salt.resume() : Salt.pause(); }, { threshold: 0.05 });
-  io.observe(document.getElementById('prehome'));
+  var io = new IntersectionObserver(function (en) { en[0].isIntersecting ? room.resume() : room.pause(); }, { threshold: 0.05 });
+  io.observe(stage);
+  window.Room = room;
 })();
 </script>
 </body>

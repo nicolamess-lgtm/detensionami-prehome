@@ -5,7 +5,10 @@
    spinto oltre il bordo, e allora cade sul pavimento come chicchi.
    Lo scroll della pagina inclina il vassoio: il sale scivola verso il bordo davanti.
    Coordinate di lavoro = pixel della foto (941×1671). */
-(function () {
+window.Rooms = window.Rooms || {};
+window.Rooms.emozionale = {
+  photo: 'img/lettino-vuoto.webp',
+  init: function (canvas, stage) {
   var IMG_W = 941, IMG_H = 1671;
   // bordo interno della vasca: (TOP: x 343→598) … (BOT: x 48→895)
   var TOP = 838, BOT = 1170, XL0 = 335, XR0 = 605, XL1 = 50, XR1 = 890;
@@ -17,9 +20,7 @@
   var GRAV = 0.55, FLOOR_BOUNCE = 0.25, FLOOR_FRICTION = 0.82;
   var MAXP = 7000;          // chicchi caduti fuori
 
-  var canvas = document.getElementById('salt');
   var ctx = canvas.getContext('2d');
-  var stage = canvas.parentElement;
   var DPR = Math.min(2, window.devicePixelRatio || 1);
   var scale = 1, offX = 0, offY = 0, W = 0, H = 0;
 
@@ -316,13 +317,13 @@
 
   window.addEventListener('resize', resize);
   resize(); seed();
-  running = true; requestAnimationFrame(loop);
 
-  window.Salt = {
+  return {
     reset: seed,
     onChange: function (f) { listeners.push(f); },
     stats: function () { return { fractionOut: massOut / massTotal, grains: P }; },
     pause: function () { running = false; },
     resume: function () { if (!running) { running = true; requestAnimationFrame(loop); } }
   };
-})();
+  }
+};
