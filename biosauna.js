@@ -57,7 +57,7 @@ window.Rooms.biosauna = {
     /* ---------- corpi ---------- */
     var stones = [], steam = [], held = null, onBedCount = 0, thrownOff = 0, fed = 0;
     function makeStone(x, y, sprite, onBed) {
-      return { x: x, y: y, vx: 0, vy: 0, rot: (Math.random() - 0.5) * 0.3, spin: 0, sprite: sprite, onBed: onBed, z: 0, vz: 0, inStove: false, asleep: false };
+      return { x: x, y: y, vx: 0, vy: 0, rot: (Math.random() - 0.5) * 0.3, spin: 0, sprite: sprite, onBed: onBed, z: 0, vz: 0, inStove: false, asleep: false, wob: 0, wobT: 0 };
     }
     function seed() {
       stones = []; steam = []; held = null; thrownOff = 0; fed = 0;
@@ -77,7 +77,9 @@ window.Rooms.biosauna = {
       for (var i = 0; i < stones.length; i++) {
         var s = stones[i];
         if (s === held || s.inStove) continue;
-        if (s.asleep) continue;
+        if (s.wob > 0.002) { s.wobT += 0.35; s.wob *= 0.94; any = true; }
+        else { s.wob = 0; }
+        if (s.asleep && !s.wob) continue;
         any = true;
         // volo (dopo una caduta dal lettino) e rotolamento con attrito
         s.vz -= 1.6; s.z += s.vz;
@@ -100,7 +102,7 @@ window.Rooms.biosauna = {
           s.inStove = true; s.x = STOVE.mouth[0] + (Math.random() - 0.5) * 90; s.y = STOVE.mouth[1] + (Math.random() - 0.5) * 30; fed++;
           burst(s.x, s.y, 90);
         }
-        if (Math.abs(s.vx) + Math.abs(s.vy) < 0.15 && s.z === 0) { s.vx = s.vy = 0; s.asleep = true; }
+        if (Math.abs(s.vx) + Math.abs(s.vy) < 0.15 && s.z === 0) { s.vx = s.vy = 0; s.asleep = true; if (s.wob) any = true; }
       }
       // urti tra pietre
       for (var a = 0; a < stones.length; a++) for (var b = a + 1; b < stones.length; b++) {
@@ -133,6 +135,31 @@ window.Rooms.biosauna = {
       for (var i = 0; i < n; i++) steam.push({ x: x + (Math.random() - 0.5) * 60, y: y, vx: (Math.random() - 0.5) * 2.2, vy: -1.5 - Math.random() * 3, r: 10 + Math.random() * 18, a: 0.14 + Math.random() * 0.12, decay: 0.0025 + Math.random() * 0.003 });
     }
 
+    // lo scroll scuote il lettino: le pietre traballano e scivolano in avanti
+    function jolt(dy) {
+      var k = Math.min(1, Math.abs(dy) / 120);
+      if (k < 0.05) return;
+      stones.forEach(function (s) {
+        if (s === held || s.inStove) return;
+        s.asleep = false;
+        s.vy += (dy > 0 ? 1 : -1) * (1.5 + 4 * k) * (0.7 + Math.random() * 0.6);
+        s.vx += (Math.random() - 0.5) * 2.5 * k;
+        s.spin += (Math.random() - 0.5) * 0.12 * k;
+        s.wob = Math.max(s.wob, 0.25 * k); s.wobT = 0;
+        if (k > 0.6 && s.z === 0) s.vz = 3 + 4 * k;              // scroll forte: saltello
+      });
+    }
+    var lastScroll = window.scrollY || 0;
+    window.addEventListener('scroll', function () { var y = window.scrollY || 0; jolt(y - lastScroll); lastScroll = y; }, { passive: true });
+    // da ferme, ogni tanto una pietra si dondola: si capisce che è viva
+    var idleTimer = setInterval(function () {
+      if (held || !running) return;
+      var cand = stones.filter(function (s) { return !s.inStove; });
+      if (!cand.length) return;
+      var s = cand[(Math.random() * cand.length) | 0];
+      s.wob = 0.18; s.wobT = 0; s.asleep = false;
+    }, 2600);
+
     /* ---------- rendering ---------- */
     function render() {
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -147,7 +174,7 @@ window.Rooms.biosauna = {
         ctx.fillStyle = 'rgba(20,10,5,' + (s.z > 0 ? 0.25 : 0.45) + ')';
         ctx.beginPath(); ctx.ellipse(0, 0, sp.rx * 0.9, sp.rx * 0.9, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
         // pietra
-        ctx.save(); ctx.translate(s.x, s.y - s.z); ctx.scale(k, k); ctx.rotate(s.rot);
+        ctx.save(); ctx.translate(s.x, s.y - s.z - Math.abs(Math.sin(s.wobT)) * s.wob * 14); ctx.scale(k, k); ctx.rotate(s.rot + Math.sin(s.wobT) * s.wob);
         if (s === held) { ctx.shadowColor = 'rgba(255,190,120,.8)'; ctx.shadowBlur = 18; }
         ctx.drawImage(sp.img, -sp.rx, -sp.ry); ctx.restore();
       }
