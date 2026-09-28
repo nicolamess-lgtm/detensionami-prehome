@@ -193,16 +193,16 @@ window.Rooms.biosauna = {
 
     // lo scroll scuote la stanza: le pietre traballano e scivolano verso di te
     function jolt(dy) {
-      var k = Math.min(1, Math.abs(dy) / 120);
+      var k = Math.min(1, Math.abs(dy) / 260);
       if (k < 0.05) return;
       stones.forEach(function (s) {
-        if (s === held || s.inStove) return;
+        if (s === held || s.inStove || s.inHole) return;
         s.asleep = false;
-        s.vy += (dy > 0 ? -1 : 1) * (0.25 + 0.7 * k) * (0.7 + Math.random() * 0.6);
-        s.vx += (Math.random() - 0.5) * 0.4 * k;
-        s.spin += (Math.random() - 0.5) * 0.12 * k;
-        s.wob = Math.max(s.wob, 0.25 * k); s.wobT = 0;
-        if (k > 0.6) s.vz = 0.6 + 1.2 * k;
+        // un piccolo scivolamento e un traballio: si muovono, non volano
+        s.vy += (dy > 0 ? -1 : 1) * 0.12 * k * (0.7 + Math.random() * 0.6);
+        s.vx += (Math.random() - 0.5) * 0.08 * k;
+        s.spin += (Math.random() - 0.5) * 0.08 * k;
+        s.wob = Math.max(s.wob, 0.22 * k); s.wobT = 0;
       });
     }
     var lastScroll = window.scrollY || 0;
@@ -337,13 +337,18 @@ window.Rooms.biosauna = {
       if (!running) return;
       requestAnimationFrame(loop);
       if (now - last < 15) return;
+      // passi di simulazione in base al tempo trascorso (su 30 fps o dopo una pausa non va al rallentatore)
+      var n = Math.max(1, Math.min(4, Math.round((now - last) / 16.7)));
       last = now;
-      var any = step();
+      var any = false;
+      for (var i = 0; i < n; i++) if (step()) any = true;
       if (any || held) {
         render();
         var onStoveNow = 0, floorNow = 0;
         stones.forEach(function (s) { if (s.inStove || s.inHole) return; if (s.onStove) onStoveNow++; else if (s.Z < 0.12 && s.asleep) floorNow++; });
-        var st = { mess: Math.min(1, (floorNow + inHoleCount) / 3), praise: onStoveNow >= 2 && floorNow + inHoleCount <= 1 ? 1 : 0 };
+        var onBedNow = 0; stones.forEach(function (s) { if (!s.inStove && !s.inHole && s.Z > BED.top - 0.05 && inBed(s.X, s.Y)) onBedNow++; });
+        var done = onBedNow === 0 && !held;                        // tutte e quattro via dal lettino
+        var st = { mess: done && floorNow + inHoleCount >= 2 ? 1 : 0, praise: done && onStoveNow >= 3 ? 1 : 0 };
         for (var k = 0; k < listeners.length; k++) listeners[k](st);
       }
     }
