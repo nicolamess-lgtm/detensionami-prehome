@@ -43,9 +43,14 @@ window.Rooms.biosauna = {
       STOVE.y0 = Math.min(a.Y, b.Y); STOVE.y1 = Math.max(c.Y, d.Y);
       STOVE.mouth = proj((STOVE.x0 + STOVE.x1) / 2, (STOVE.y0 + STOVE.y1) / 2, STOVE.top);
     })();
+    // foro per il viso: un vero buco nel lettino (ellisse in foto ≈ 430..520 × 1300..1440)
+    var HOLE = (function () { var c = unproj(475, 1370, BED.top), a = unproj(430, 1370, BED.top); return { X: c.X, Y: c.Y, r: Math.abs(c.X - a.X) }; })();
+    function inHole(X, Y) { return Math.hypot(X - HOLE.X, (Y - HOLE.Y) * 0.7) < HOLE.r; }
     function inBed(X, Y) { return X > BED.x0 - R && X < BED.x1 + R && Y > BED.y0 - R && Y < BED.y1 + R; }
-    function inStove(X, Y) { return X > STOVE.x0 && X < STOVE.x1 && Y > STOVE.y0 && Y < STOVE.y1; }
+    function inStove(X, Y) { return X > STOVE.x0 - 0.08 && X < STOVE.x1 + 0.08 && Y > STOVE.y0 - 0.08 && Y < STOVE.y1 + 0.12; }
+    function nearStove(X, Y) { return X > STOVE.x0 - 0.3 && X < STOVE.x1 + 0.3 && Y > STOVE.y0 - 0.3 && Y < STOVE.y1 + 0.4; }
     function supportZ(X, Y) { return inBed(X, Y) ? BED.top : inStove(X, Y) ? STOVE.top : 0; }
+    var EDGE = 34;   // pareti invisibili sul bordo della foto (px)
 
     /* ---------- foto di base: telo pulito, ritagli delle pietre ---------- */
     var STONES_PX = [[478, 960, 41, 23], [480, 1010, 42, 24], [478, 1068, 43, 25], [476, 1130, 44, 26]];
@@ -74,24 +79,25 @@ window.Rooms.biosauna = {
         var pk = pc.getContext('2d');
         pk.drawImage(photo, px0 + 110, py0, pw, ph, 0, 0, pw, ph);
         pk.globalAlpha = 0.5; pk.drawImage(photo, px0 - 110, py0, pw, ph, 0, 0, pw, ph); pk.globalAlpha = 1;
-        pk.fillStyle = 'rgba(40,20,10,0.16)'; pk.fillRect(0, 0, pw, ph);
+        pk.fillStyle = 'rgba(40,20,10,0.07)'; pk.fillRect(0, 0, pw, ph);
         pk.globalCompositeOperation = 'destination-in';
         pk.save(); pk.scale(pw / 2, ph / 2);
         var pg = pk.createRadialGradient(1, 1, 0, 1, 1, 1);
-        pg.addColorStop(0.55, 'rgba(0,0,0,1)'); pg.addColorStop(1, 'rgba(0,0,0,0)');
+        pg.addColorStop(0.3, 'rgba(0,0,0,1)'); pg.addColorStop(1, 'rgba(0,0,0,0)');
         pk.fillStyle = pg; pk.fillRect(0, 0, 2, 2); pk.restore();
         bctx.drawImage(pc, px0, py0);
       });
       ready = true; seed(); render();
     };
+    if (photo.complete && photo.naturalWidth) photo.onload();
 
     /* ---------- corpi ---------- */
-    var stones = [], steam = [], held = null, onFloor = 0, fed = 0;
+    var stones = [], steam = [], held = null, onFloor = 0, fed = 0, inHoleCount = 0;
     function makeStone(X, Y, Z, sprite) {
-      return { X: X, Y: Y, Z: Z, vx: 0, vy: 0, vz: 0, rot: (Math.random() - 0.5) * 0.3, spin: 0, sprite: sprite, inStove: false, asleep: false, wob: 0, wobT: 0, wasOnBed: true };
+      return { X: X, Y: Y, Z: Z, vx: 0, vy: 0, vz: 0, rot: (Math.random() - 0.5) * 0.3, spin: 0, sprite: sprite, inStove: false, onStove: false, inHole: false, asleep: false, wob: 0, wobT: 0, wasOnBed: true };
     }
     function seed() {
-      stones = []; steam = []; held = null; onFloor = 0; fed = 0;
+      stones = []; steam = []; held = null; onFloor = 0; fed = 0; inHoleCount = 0;
       sprites.forEach(function (sp) { stones.push(makeStone(sp.X, sp.Y, BED.top + R, sp)); });
     }
 
@@ -102,25 +108,47 @@ window.Rooms.biosauna = {
         if (s.wob > 0.002) { s.wobT += 0.35; s.wob *= 0.94; any = true; } else s.wob = 0;
         if (s === held || s.inStove || s.asleep) continue;
         any = true;
+        if (s.inHole) {                                             // sta cadendo dentro il foro
+          s.vz -= G * DT; s.Z += s.vz * DT;
+          if (s.Z < BED.top - 0.35) { s.inStove = true; }             // sparita sotto il lettino
+          continue;
+        }
         s.vz -= G * DT;
         s.X += s.vx * DT; s.Y += s.vy * DT; s.Z += s.vz * DT;
         // superficie d'appoggio sotto la pietra
         var zs = supportZ(s.X, s.Y);
+        if (zs === BED.top && inHole(s.X, s.Y) && s.Z < BED.top + R + 0.08 && s.vz <= 0.05) {
+          s.inHole = true; s.X = HOLE.X; s.Y = HOLE.Y; s.vx = s.vy = 0; s.vz = -0.5; inHoleCount++;
+          if (s.wasOnBed) { s.wasOnBed = false; }
+          continue;
+        }
         if (s.Z < zs + R) {
-          if (zs === STOVE.top && inStove(s.X, s.Y)) {
-            s.inStove = true; fed++; burst(STOVE.mouth.u, STOVE.mouth.v, 90); continue;
-          }
           s.Z = zs + R;
+          if (zs === STOVE.top && !s.onStove) { s.onStove = true; fed++; burst(STOVE.mouth.u, STOVE.mouth.v, 90); s.wasOnBed = false; }
           if (s.vz < -0.6) { s.vz = -s.vz * 0.35; s.spin += (Math.random() - 0.5) * 0.2; }
           else { s.vz = 0; }
           s.vx *= (zs === 0 ? 0.86 : 0.8); s.vy *= (zs === 0 ? 0.86 : 0.8);   // attrito: parquet / telo
           if (zs === 0 && s.wasOnBed) { s.wasOnBed = false; onFloor++; }
         }
+        if (zs !== STOVE.top) s.onStove = false;
+        // bordo della foto: una pietra non esce mai dall'inquadratura
+        var pe = proj(s.X, s.Y, s.Z);
+        if (pe.u < EDGE) { s.X += (EDGE - pe.u) / CAM.f * pe.d; s.vx = Math.abs(s.vx) * 0.4; }
+        if (pe.u > IMG_W - EDGE) { s.X -= (pe.u - (IMG_W - EDGE)) / CAM.f * pe.d; s.vx = -Math.abs(s.vx) * 0.4; }
+        if (pe.v > IMG_H - EDGE) { s.Y += 0.05; s.vy = Math.abs(s.vy) * 0.4; }
         // pareti
         if (s.X < -ROOM.w / 2 + R) { s.X = -ROOM.w / 2 + R; s.vx = -s.vx * 0.45; }
         if (s.X > ROOM.w / 2 - R) { s.X = ROOM.w / 2 - R; s.vx = -s.vx * 0.45; }
         if (s.Y > ROOM.l - R) { s.Y = ROOM.l - R; s.vy = -s.vy * 0.45; }
         if (s.Y < ROOM.near) { s.Y = ROOM.near; s.vy = -s.vy * 0.45; }
+        // fianchi della stufa: dal pavimento non si passa attraverso
+        if (s.Z < STOVE.top && inStove(s.X, s.Y)) {
+          var sl = s.X - STOVE.x0, sr = STOVE.x1 - s.X, sn = s.Y - STOVE.y0, sf = STOVE.y1 - s.Y, sm = Math.min(sl, sr, sn, sf);
+          if (sm === sl) { s.X = STOVE.x0 - R; s.vx = -Math.abs(s.vx) * 0.4; }
+          else if (sm === sr) { s.X = STOVE.x1 + R; s.vx = Math.abs(s.vx) * 0.4; }
+          else if (sm === sn) { s.Y = STOVE.y0 - R; s.vy = -Math.abs(s.vy) * 0.4; }
+          else { s.Y = STOVE.y1 + R; s.vy = Math.abs(s.vy) * 0.4; }
+        }
         // fianco del lettino: dal pavimento non si passa attraverso
         if (s.Z < BED.top && inBed(s.X, s.Y)) {
           var dl = s.X - BED.x0, dr = BED.x1 - s.X, dn = s.Y - BED.y0, df = BED.y1 - s.Y, m = Math.min(dl, dr, dn, df);
@@ -136,7 +164,7 @@ window.Rooms.biosauna = {
       // urti tra pietre (sfere)
       for (var a = 0; a < stones.length; a++) for (var b = a + 1; b < stones.length; b++) {
         var A = stones[a], B = stones[b];
-        if (A.inStove || B.inStove) continue;
+        if (A.inStove || B.inStove || A.inHole || B.inHole) continue;
         var dx = B.X - A.X, dy = B.Y - A.Y, dz = B.Z - A.Z, d = Math.hypot(dx, dy, dz);
         if (d > 0 && d < 2 * R) {
           var nx = dx / d, ny = dy / d, nz = dz / d, push = (2 * R - d) / 2;
@@ -199,10 +227,18 @@ window.Rooms.biosauna = {
         var s = order[i].s, p = order[i].p, sp = s.sprite, k = sp.d0 / p.d;
         // ombra sulla superficie sotto
         var zs = supportZ(s.X, s.Y), sh = proj(s.X, s.Y, zs), hgt = s.Z - R - zs;
-        ctx.save(); ctx.translate(sh.u, sh.v + 3); ctx.scale(k, k * 0.5);
+        if (!s.inHole) { ctx.save(); ctx.translate(sh.u, sh.v + 3); ctx.scale(k, k * 0.5);
         ctx.fillStyle = 'rgba(20,10,5,' + Math.max(0.08, 0.45 - hgt * 0.5) + ')';
-        ctx.beginPath(); ctx.ellipse(0, 0, sp.rx * (0.9 + hgt * 0.4), sp.rx * (0.9 + hgt * 0.4), 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-        ctx.save(); ctx.translate(p.u, p.v - Math.abs(Math.sin(s.wobT)) * s.wob * 14); ctx.scale(k, k); ctx.rotate(s.rot + Math.sin(s.wobT) * s.wob);
+        ctx.beginPath(); ctx.ellipse(0, 0, sp.rx * (0.9 + hgt * 0.4), sp.rx * (0.9 + hgt * 0.4), 0, 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
+        ctx.save();
+        if (s.inHole) { ctx.beginPath(); ctx.ellipse(475, 1370, 46, 72, 0, 0, Math.PI * 2); ctx.clip(); }
+        if (s.Y > STOVE.y0 + 0.1 && s.Z < STOVE.top && s.X < STOVE.x1 + 0.3) {   // dietro la stufa: la stufa la copre
+          var q0 = proj(STOVE.x0, STOVE.y0, 0), q1 = proj(STOVE.x1, STOVE.y0, 0), q2 = proj(STOVE.x1, STOVE.y0, STOVE.top), q3 = proj(STOVE.x1, STOVE.y1, STOVE.top), q4 = proj(STOVE.x0, STOVE.y1, STOVE.top), q5 = proj(STOVE.x0, STOVE.y0, STOVE.top);
+          ctx.beginPath(); ctx.rect(-2000, -2000, IMG_W + 4000, IMG_H + 4000);
+          ctx.moveTo(q0.u, q0.v); ctx.lineTo(q1.u, q1.v); ctx.lineTo(q2.u, q2.v); ctx.lineTo(q3.u, q3.v); ctx.lineTo(q4.u, q4.v); ctx.lineTo(q5.u, q5.v); ctx.closePath();
+          ctx.clip('evenodd');
+        }
+        ctx.translate(p.u, p.v - Math.abs(Math.sin(s.wobT)) * s.wob * 14); ctx.scale(k, k); ctx.rotate(s.rot + Math.sin(s.wobT) * s.wob);
         if (s === held) { ctx.shadowColor = 'rgba(255,190,120,.8)'; ctx.shadowBlur = 18; }
         ctx.drawImage(sp.img, -sp.rx, -sp.ry); ctx.restore();
       }
@@ -222,6 +258,7 @@ window.Rooms.biosauna = {
       box(-ROOM.w / 2, ROOM.w / 2, ROOM.near, ROOM.l, 0, ROOM.h, 'rgba(80,200,255,.8)');
       box(BED.x0, BED.x1, BED.y0, BED.y1, 0, BED.top, 'rgba(255,230,80,.9)');
       box(STOVE.x0, STOVE.x1, STOVE.y0, STOVE.y1, 0, STOVE.top, 'rgba(255,90,90,.9)');
+      ctx.strokeStyle = 'rgba(120,255,120,.9)'; ctx.beginPath(); ctx.ellipse(475, 1370, 46, 72, 0, 0, Math.PI * 2); ctx.stroke();
     }
     function resize() {
       W = stage.clientWidth; H = stage.clientHeight;
@@ -234,12 +271,18 @@ window.Rooms.biosauna = {
     }
 
     /* ---------- input ---------- */
-    var CARRY = BED.top + 0.12;                                    // quota a cui si porta in giro una pietra
+    // la pietra si porta in giro sopra quello che c'è sotto il dito: lettino, stufa o pavimento
+    function carryPoint(u, v) {
+      var LIFT = 0.12, w;
+      w = unproj(u, v, BED.top + LIFT); if (inBed(w.X, w.Y)) return { X: w.X, Y: w.Y, Z: BED.top + LIFT };
+      w = unproj(u, v, STOVE.top + LIFT); if (nearStove(w.X, w.Y)) return { X: Math.max(STOVE.x0, Math.min(STOVE.x1, w.X)), Y: Math.max(STOVE.y0, Math.min(STOVE.y1, w.Y)), Z: STOVE.top + LIFT };
+      w = unproj(u, v, LIFT); return { X: w.X, Y: w.Y, Z: LIFT };
+    }
     function toImgPt(cx, cy) { var r = canvas.getBoundingClientRect(); return { x: (cx - r.left - offX) / scale, y: (cy - r.top - offY) / scale }; }
     function hit(p) {
       var best = null, bd = 1e9;
       for (var i = 0; i < stones.length; i++) {
-        var s = stones[i]; if (s.inStove) continue;
+        var s = stones[i]; if (s.inStove || s.inHole) continue;
         var q = proj(s.X, s.Y, s.Z), k = s.sprite.d0 / q.d;
         var dd = Math.hypot((p.x - q.u) / (s.sprite.rx * k * 1.4), (p.y - q.v) / (s.sprite.ry * k * 1.9));
         if (dd < 1 && q.d < bd) { best = s; bd = q.d; }
@@ -260,25 +303,28 @@ window.Rooms.biosauna = {
       }
       if (!s) return;
       try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
-      held = s; s.asleep = false; s.vx = s.vy = s.vz = 0; s.inStove = false;
-      var w2 = unproj(p.x, p.y, CARRY); s.X = w2.X; s.Y = Math.max(ROOM.near, w2.Y); s.Z = CARRY;
+      held = s; s.asleep = false; s.vx = s.vy = s.vz = 0; s.inStove = false; s.onStove = false;
+      var w2 = carryPoint(p.x, p.y); s.X = w2.X; s.Y = Math.max(ROOM.near, w2.Y); s.Z = w2.Z;
       hist = [{ X: s.X, Y: s.Y, t: performance.now() }];
       canvas.classList.add('dragging');
     });
     canvas.addEventListener('pointermove', function (e) {
       if (!held) return;
-      var p = toImgPt(e.clientX, e.clientY), w = unproj(p.x, p.y, CARRY);
-      held.X = Math.max(-ROOM.w / 2 + R, Math.min(ROOM.w / 2 - R, w.X)); held.Y = Math.max(ROOM.near, Math.min(ROOM.l - R, w.Y)); held.Z = CARRY;
+      var p = toImgPt(e.clientX, e.clientY), w = carryPoint(p.x, p.y);
+      held.X = Math.max(-ROOM.w / 2 + R, Math.min(ROOM.w / 2 - R, w.X)); held.Y = Math.max(ROOM.near, Math.min(ROOM.l - R, w.Y)); held.Z = w.Z;
       hist.push({ X: held.X, Y: held.Y, t: performance.now() }); if (hist.length > 6) hist.shift();
     });
     function release() {
       if (!held) return;
       var s = held; held = null; canvas.classList.remove('dragging');
-      if (hist.length > 1) {
-        var a = hist[0], b = hist[hist.length - 1], dt = Math.max(0.016, (b.t - a.t) / 1000);
+      // velocità dal movimento degli ultimi istanti; se il dito si è fermato, la pietra si posa
+      hist.push({ X: s.X, Y: s.Y, t: performance.now() });
+      var now = performance.now(), recent = hist.filter(function (h) { return now - h.t < 120; });
+      if (recent.length > 1) {
+        var a = recent[0], b = recent[recent.length - 1], dt = Math.max(0.016, (b.t - a.t) / 1000);
         s.vx = (b.X - a.X) / dt * 0.9; s.vy = (b.Y - a.Y) / dt * 0.9;
         var v = Math.hypot(s.vx, s.vy); if (v > 5) { s.vx *= 5 / v; s.vy *= 5 / v; v = 5; }
-        s.vz = Math.min(1.4, v * 0.22);
+        s.vz = v > 1.2 ? Math.min(1.4, v * 0.22) : 0;
         s.spin = (Math.random() - 0.5) * Math.min(0.3, v / 20);
       }
     }
@@ -295,8 +341,10 @@ window.Rooms.biosauna = {
       var any = step();
       if (any || held) {
         render();
-        var mess = Math.min(1, onFloor / 4 * 0.6 + Math.max(0, stones.length - 4) / 10 * 0.4);
-        for (var k = 0; k < listeners.length; k++) listeners[k](mess);
+        var onStoveNow = 0, floorNow = 0;
+        stones.forEach(function (s) { if (s.inStove || s.inHole) return; if (s.onStove) onStoveNow++; else if (s.Z < 0.12 && s.asleep) floorNow++; });
+        var st = { mess: Math.min(1, (floorNow + inHoleCount) / 3), praise: onStoveNow >= 2 && floorNow + inHoleCount <= 1 ? 1 : 0 };
+        for (var k = 0; k < listeners.length; k++) listeners[k](st);
       }
     }
     window.addEventListener('resize', resize);
@@ -305,7 +353,7 @@ window.Rooms.biosauna = {
     return {
       reset: function () { seed(); render(); },
       onChange: function (f) { listeners.push(f); },
-      stats: function () { return { stones: stones.length, onFloor: onFloor, fed: fed, stove: STOVE, pos: stones.map(function (s) { return [s.X.toFixed(2), s.Y.toFixed(2), s.Z.toFixed(2), s.inStove]; }) }; },
+      stats: function () { return { running: running, held: !!held, stones: stones.length, onFloor: onFloor, fed: fed, inHole: inHoleCount, hole: HOLE, stove: STOVE, pos: stones.map(function (s) { return [s.X.toFixed(2), s.Y.toFixed(2), s.Z.toFixed(2), s.inStove]; }) }; },
       pause: function () { running = false; },
       resume: function () { if (!running) { running = true; requestAnimationFrame(loop); } }
     };

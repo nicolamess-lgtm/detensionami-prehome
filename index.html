@@ -198,8 +198,8 @@
   </div>
 </footer>
 
-<script src="salt.js?v=3"></script>
-<script src="biosauna.js?v=3"></script>
+<script src="salt.js?v=4"></script>
+<script src="biosauna.js?v=4"></script>
 <script>
 (function () {
   // ogni accesso apre una sala a caso (o quella scelta con ?sala=...)
@@ -208,23 +208,27 @@
       eyebrow: 'Sala emozionale · sale rosa caldo',
       alt: 'Sala emozionale: lettino LEMI Aemotion sotto il cielo stellato, luce rossa',
       reset: 'Rimetti il sale',
-      phrases: [
+      mess: [
         'Finito di fare casino? Secondo me hai bisogno di rilassarti.',
         'Ti vedo stressato. Vieni a detensionarti.',
         'Il sale lo rimetto a posto io. Tu pensa a respirare.',
-        'Ok, hai vinto. Ora tocca a me: un\'ora in sala emozionale.',
-        'Terza volta che svuoti il lettino. Ti aspetto, davvero.'
-      ]
+        'Ok, hai vinto. Ora tocca a me: un\'ora in sala emozionale.'
+      ],
+      praise: []
     },
     biosauna: {
       eyebrow: 'Sala biosauna · pietre calde',
       alt: 'Cabina biosauna in legno con lettino, telo e pietre calde',
       reset: 'Rimetti le pietre',
-      phrases: [
+      mess: [
         'Hai finito di tirare sassi? Sdraiati, il vapore lo faccio io.',
-        'Le pietre servono calde sulla schiena, non per terra. Vieni.',
         'Ti vedo stressato. Trenta gradi e due mani: vieni a detensionarti.',
-        'Ok, la stufa è piena. Ora tocca a te: un\'ora in biosauna.'
+        'Le pietre servono calde sulla schiena, non per terra. Vieni.',
+        'Terza volta che svuoti il lettino. Ti aspetto, davvero.'
+      ],
+      praise: [
+        'Bravo: pietre sulla stufa, vapore, silenzio. Ora basta giocare, ti aspetto.',
+        'Hai capito come funziona. Il resto lo faccio io: vieni in biosauna.'
       ]
     }
   };
@@ -242,18 +246,25 @@
   document.querySelector('.caption .eyebrow').textContent = cfg.eyebrow;
   document.getElementById('scoldReset').textContent = cfg.reset;
 
-  // frasi diverse a ogni visita, per sala
+  // frasi: famiglia "casino" o "complimenti" secondo quello che fai; cambiano a ogni visita e a ogni ripetizione
   var visit = 0;
   try { visit = parseInt(localStorage.getItem('dt-visit-' + id) || '0', 10); localStorage.setItem('dt-visit-' + id, String(visit + 1)); } catch (e) {}
-  document.getElementById('scoldText').textContent = cfg.phrases[Math.min(visit, cfg.phrases.length - 1)];
-
+  var shownCount = { mess: 0, praise: 0 }, lastKind = null;
+  function say(kind) {
+    var list = cfg[kind]; if (!list.length) return;
+    document.getElementById('scoldText').textContent = list[(visit + shownCount[kind]) % list.length];
+    shownCount[kind]++; lastKind = kind;
+    scold.classList.add('show');
+  }
   var room = mod.init(canvas, stage);
-  var scold = document.getElementById('scold'), shown = false;
-  room.onChange(function (mess) {
-    if (shown) return;
-    if (mess >= 0.5) { shown = true; scold.classList.add('show'); }   // almeno metà del "casino" possibile
+  var scold = document.getElementById('scold');
+  room.onChange(function (st) {
+    if (typeof st === 'number') st = { mess: st, praise: 0 };
+    if (scold.classList.contains('show')) return;
+    if (st.praise >= 1 && lastKind !== 'praise') say('praise');
+    else if (st.mess >= 0.5 && lastKind !== 'mess') say('mess');
   });
-  document.getElementById('scoldReset').addEventListener('click', function () { scold.classList.remove('show'); shown = false; room.reset(); });
+  document.getElementById('scoldReset').addEventListener('click', function () { scold.classList.remove('show'); lastKind = null; room.reset(); });
   document.getElementById('scoldGo').addEventListener('click', function () { scold.classList.remove('show'); });
 
   // la simulazione gira solo quando la pre-home è visibile
