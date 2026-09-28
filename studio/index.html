@@ -367,7 +367,7 @@ body.menu-open{overflow:hidden}
 /* ---------- libri ---------- */
 .books{list-style:none; margin:0; padding:0; border-top:1px solid var(--line)}
 .books li{
-  display:grid; grid-template-columns:118px 1fr; gap:18px;
+  display:grid; grid-template-columns:1fr; gap:18px;
   padding:16px 0; border-bottom:1px solid var(--line); align-items:baseline;
 }
 .books .when{
@@ -376,6 +376,8 @@ body.menu-open{overflow:hidden}
 }
 .books .when small{display:block; color:var(--muted); letter-spacing:.08em; margin-top:3px; font-size:10px}
 .books h3{font-size:21px; margin:0 0 3px}
+.books h3 a, .books p a{text-decoration:none; border-bottom:1px solid var(--line)}
+.books h3 a:hover, .books p a:hover{color:var(--clay)}
 .books p{margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.55}
 @media(max-width:520px){ .books li{grid-template-columns:1fr; gap:6px} }
 
@@ -1508,7 +1510,7 @@ details .answer p:last-child{margin-bottom:0}
       <div class="split">
         <div class="split-media"><img src="img/libro.jpg" alt="Il libro Il potere della cacca di Nicola Messina su un tavolo di legno"></div>
         <div class="split-body">
-          <p class="eyebrow">Pubblicazioni 2026</p>
+          <p class="eyebrow">Pubblicazioni</p>
           <p class="quote">Sei libri per continuare a casa il percorso iniziato qui.</p>
           <p>
             Ogni titolo approfondisce un aspetto del lavoro che faccio in studio, con le
@@ -1516,27 +1518,21 @@ details .answer p:last-child{margin-bottom:0}
           </p>
           <ul class="books">
             <li>
-              <span class="when">Maggio</span>
-              <div><h3>Il potere della cacca</h3><p>Cos'è la psicobiotica: psicologia e nutrizione si incrociano su oltre 360 fonti bibliografiche.</p></div>
+              <div><h3><a href="https://link.amazon/B0hjfMxFQ" target="_blank" rel="noopener">Il potere della cacca</a></h3><p>Cos'è la psicobiotica: psicologia e nutrizione si incrociano su oltre 360 fonti bibliografiche. Uscito il 1° maggio 2026.</p></div>
             </li>
             <li>
-              <span class="when">Giugno</span>
-              <div><h3>Timeline</h3><p>Dove sei adesso e dove stai andando: tecniche psicologiche per sviluppare consapevolezza.</p></div>
+              <div><h3>Timeline</h3><p>Dove sei adesso e dove stai andando: tecniche psicologiche per sviluppare consapevolezza. Attualmente in co-scrittura insieme al dottor <a href="https://francoberrino.it/chi-sono/" target="_blank" rel="noopener">Franco Berrino</a>.</p></div>
             </li>
             <li>
-              <span class="when">Agosto</span>
               <div><h3>I suoi primi 2000 giorni</h3><p>Neurosviluppo, attaccamento e microbiota nei primi cinque anni di vita.</p></div>
             </li>
             <li>
-              <span class="when">Settembre</span>
               <div><h3>Genitori 3.0</h3><p>Neuroscienze, attaccamento e mondo digitale: la cassetta degli attrezzi per chi educa oggi.</p></div>
             </li>
             <li>
-              <span class="when">Ottobre<small>in uscita</small></span>
               <div><h3>Il monaco &amp; il microbioma</h3><p>Meditazione, nervo vago e asse intestino-cervello.</p></div>
             </li>
             <li>
-              <span class="when">Dicembre<small>in uscita</small></span>
               <div><h3>Ok, quindi anche tu o tuo figlio avete l'ADHD</h3><p>Riconoscere la neurodivergenza, conviverci e trasformarla in risorsa quotidiana.</p></div>
             </li>
           </ul>
@@ -1562,8 +1558,6 @@ details .answer p:last-child{margin-bottom:0}
           <ul class="contact-list">
             <li><a href="https://wa.me/393347918516?text=Ciao%20Nicola%2C%20vorrei%20ricevere%20il%20catalogo%20aggiornato%20in%20PDF." target="_blank" rel="noopener">334 79 18 516 <span>WhatsApp</span></a></li>
             <li><a href="https://www.instagram.com/detensionami/" target="_blank" rel="noopener">@detensionami <span>Instagram</span></a></li>
-            <li><a href="https://www.detensionami.it" target="_blank" rel="noopener">detensionami.it <span>Sito</span></a></li>
-            <li><a href="https://www.drenami.it" target="_blank" rel="noopener">drenami.it <span>Drenaggio</span></a></li>
           </ul>
         </div>
       </div>
@@ -1610,8 +1604,6 @@ details .answer p:last-child{margin-bottom:0}
         <ul>
           <li><a href="https://wa.me/393347918516" target="_blank" rel="noopener">WhatsApp · 334 79 18 516</a></li>
           <li><a href="https://www.instagram.com/detensionami/" target="_blank" rel="noopener">Instagram · @detensionami</a></li>
-          <li><a href="https://www.detensionami.it" target="_blank" rel="noopener">detensionami.it</a></li>
-          <li><a href="https://www.drenami.it" target="_blank" rel="noopener">drenami.it</a></li>
         </ul>
       </div>
     </div>
