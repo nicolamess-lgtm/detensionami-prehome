@@ -33,6 +33,32 @@
   .prehome .caption h1{font-size:clamp(28px,7vw,52px); color:#fff; max-width:14ch; margin:0 auto}
   .prehome .caption p.hint{margin:12px auto 0; font-size:14px; color:rgba(255,255,255,.8); max-width:30ch}
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+  .prehome img.room-bg{display:none}
+  .prehome .caption p.hint{display:none}
+
+  /* ---------- monitor orizzontali (1280, 1440, 1920, 2K, 4K) ----------
+     la foto è verticale: resta intera al centro, le fasce ai lati si riempiono con la stessa foto
+     sfocata e il titolo passa nella colonna di sinistra (larga quanto la fascia: --img-x la calcola il JS) */
+  @media (min-aspect-ratio: 1/1) and (min-width: 1000px){
+    .prehome img.room-bg{
+      display:block; position:absolute; left:-6%; top:-6%; width:112%; height:112%; max-width:none;
+      object-fit:cover; object-position:center 60%;
+      filter:blur(42px) brightness(.34) saturate(1.15); pointer-events:none; user-select:none;
+    }
+    .prehome::before{
+      content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+      background:linear-gradient(to right, rgba(14,9,7,.55) 0%, rgba(14,9,7,0) 45%, rgba(14,9,7,0) 55%, rgba(14,9,7,.35) 100%);
+    }
+    .prehome canvas{z-index:2}
+    .prehome .caption{
+      top:0; bottom:0; right:auto; width:max(var(--img-x, 40%), 30%);
+      display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+      text-align:left; padding:0 clamp(28px,4vw,72px); text-shadow:0 1px 12px rgba(0,0,0,.6);
+    }
+    .prehome .caption .eyebrow{margin-bottom:14px}
+    .prehome .caption h1{margin:0; font-size:clamp(34px,3.4vw,66px); max-width:12ch}
+    .prehome .caption p.hint{display:block; margin:22px 0 0; max-width:28ch; font-size:14px}
+  }
 
   /* ---------- il messaggio ---------- */
   .scold{
@@ -57,6 +83,7 @@
 
 <!-- ================= PRE-HOME ================= -->
 <header class="prehome" id="prehome">
+  <img class="room-bg" src="" alt="" aria-hidden="true">
   <img class="room" src="" alt="">
   <canvas id="salt" aria-hidden="true"></canvas>
 
@@ -68,6 +95,7 @@
   <div class="caption">
     <p class="eyebrow">Sala emozionale · sale rosa caldo</p>
     <h1>Otto sale. Un solo massaggio: il tuo.</h1>
+    <p class="hint" id="hint"></p>
   </div>
   <div class="scroll-cue">Scorri</div>
 
@@ -208,6 +236,7 @@
       eyebrow: 'Sala emozionale · sale rosa caldo',
       alt: 'Sala emozionale: lettino LEMI Aemotion sotto il cielo stellato, luce rossa',
       reset: 'Rimetti il sale',
+      hint: 'Il sale si può toccare: trascinalo con il mouse.',
       mess: [
         'Finito di fare casino? Secondo me hai bisogno di rilassarti.',
         'Ti vedo stressato. Vieni a detensionarti.',
@@ -220,6 +249,7 @@
       eyebrow: 'Sala biosauna · pietre calde',
       alt: 'Cabina biosauna in legno con lettino, telo e pietre calde',
       reset: 'Rimetti le pietre',
+      hint: 'Le pietre si possono spostare: trascinale con il mouse.',
       mess: [
         'Hai finito di tirare sassi? Sdraiati, il vapore lo faccio io.',
         'Ti vedo stressato. Trenta gradi e due mani: vieni a detensionarti.',
@@ -243,6 +273,8 @@
 
   var stage = document.getElementById('prehome'), canvas = document.getElementById('salt'), img = stage.querySelector('img.room');
   img.src = mod.photo; img.alt = cfg.alt;
+  stage.querySelector('img.room-bg').src = mod.photo;
+  document.getElementById('hint').textContent = cfg.hint;
   document.querySelector('.caption .eyebrow').textContent = cfg.eyebrow;
   document.getElementById('scoldReset').textContent = cfg.reset;
 
