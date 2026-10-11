@@ -8,7 +8,8 @@ const PAGINA_CLIENTE = 'https://crm-smart.pages.dev/portale.html';
 const CODICE = /^[a-z]{1,16}-[a-km-np-z2-9]{10}$/;
 
 export function onRequest({ params, next }) {
-  const codice = String(params.codice || '');
+  // chi lo scrive a mano può mettere una maiuscola: il codice è tutto minuscolo
+  const codice = String(params.codice || '').toLowerCase();
   if (!CODICE.test(codice)) return next();
   // il codice va dopo il «#»: da lì in poi il browser non lo manda a nessun server
   return new Response(null, {
