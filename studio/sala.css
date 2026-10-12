@@ -1,0 +1,111 @@
+/* ---------- pagine delle sale (studio/sale/*.html) ---------- */
+/* si appoggia a studio.css: token, header, menu, bottom bar, benefit, facts, faq, final, footer */
+
+.crumb{
+  display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center;
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#E9C9B6; margin:0 0 20px;
+}
+.crumb a{text-decoration:none; color:inherit; border-bottom:1px solid rgba(255,255,255,.3)}
+.crumb a:hover{color:#fff}
+.crumb i{font-style:normal; opacity:.5}
+
+/* hero della sala */
+.rhero{
+  position:relative; display:flex; align-items:flex-end;
+  min-height:min(92svh,880px); padding:0; color:#fff; overflow:hidden; background:var(--espresso);
+}
+.rhero>img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:var(--pos,center 45%); z-index:0;
+}
+.rhero::after{
+  content:''; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(to top, rgba(20,16,13,.95) 0%, rgba(20,16,13,.64) 42%, rgba(20,16,13,.18) 100%);
+}
+.rhero .wrap{position:relative; z-index:2; padding-top:clamp(150px,24vw,280px); padding-bottom:clamp(48px,7vw,84px); width:100%}
+.rhero .num{
+  position:absolute; right:28px; top:calc(var(--header-h) + 18px); z-index:2;
+  font-family:var(--serif); font-weight:300; font-size:clamp(64px,10vw,132px); line-height:1;
+  color:rgba(255,255,255,.14); pointer-events:none; user-select:none;
+}
+.rhero h1{max-width:15ch}
+.rhero .room-tag{
+  font-size:11.5px; letter-spacing:.2em; text-transform:uppercase; color:#E9C9B6; margin:18px 0 0;
+}
+.rhero .lede{
+  font-size:clamp(17px,2vw,21px); max-width:54ch;
+  margin:22px 0 34px; color:rgba(255,255,255,.87); font-weight:300;
+}
+
+/* tre numeri sotto il hero */
+.kpis{background:var(--espresso); color:var(--sand); border-top:1px solid rgba(237,228,217,.16)}
+.kpis .wrap{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(237,228,217,.16); padding:0 28px}
+.kpi{background:var(--espresso); padding:30px 26px}
+.kpi b{display:block; font-family:var(--serif); font-weight:300; font-size:clamp(26px,3vw,36px); line-height:1.1; margin-bottom:8px}
+.kpi span{font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(237,228,217,.62)}
+@media(max-width:700px){ .kpis .wrap{grid-template-columns:1fr} .kpi{padding:22px 24px} }
+
+/* dotazione */
+.kit{margin-top:40px}
+.kit .facts li b{width:132px}
+
+/* la seduta, minuto per minuto */
+.story.sala .q{max-width:26ch}
+.steps{margin-top:48px; border-left:2px solid #D89A7A; padding-left:26px; max-width:760px}
+.steps .tl{border-bottom-color:rgba(237,228,217,.14); grid-template-columns:110px 1fr}
+.steps .tl .m{color:#D89A7A}
+.steps .tl h3{color:var(--sand)}
+.steps .tl p{color:rgba(237,228,217,.78)}
+@media(max-width:600px){ .steps .tl{grid-template-columns:1fr; gap:4px} }
+
+/* per chi è / non è */
+.fit-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:44px}
+@media(max-width:760px){ .fit-grid{grid-template-columns:1fr} }
+.fit{background:var(--paper); border:1px solid var(--line); padding:30px 28px}
+.fit h3{font-size:24px; margin-bottom:14px}
+.fit ul{list-style:none; margin:0; padding:0; font-size:15.5px; color:var(--ink-soft)}
+.fit li{padding:11px 0 11px 26px; position:relative; border-top:1px solid var(--line); line-height:1.5}
+.fit li::before{content:''; position:absolute; left:0; top:21px; width:9px; height:1px; background:var(--clay)}
+.fit.no{background:transparent}
+.fit.no li::before{background:var(--muted)}
+
+/* unicità */
+.unique .claim{max-width:22ch}
+.gallery{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:44px}
+.gallery img{width:100%; aspect-ratio:4/5; object-fit:cover}
+.gallery img.wide{grid-column:1/-1; aspect-ratio:16/9}
+
+/* le altre sale */
+.rooms-nav{background:var(--espresso); color:var(--sand)}
+.rooms-nav h2{color:var(--sand)}
+.pn{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:56px}
+@media(max-width:600px){ .pn{grid-template-columns:1fr} }
+.pn a{
+  display:block; text-decoration:none; padding:26px 28px; border:1px solid rgba(237,228,217,.18);
+  font-family:var(--serif); font-size:clamp(24px,2.6vw,30px); line-height:1.15; color:var(--sand);
+}
+.pn a:hover{border-color:#D89A7A}
+.pn a small{display:block; font-family:var(--sans); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#D89A7A; margin-bottom:10px}
+.pn a.next{text-align:right}
+.room-grid.mini{gap:16px}
+.room-grid.mini .room{text-decoration:none; color:inherit; display:block}
+.room-grid.mini .room img{aspect-ratio:1/1}
+.room-grid.mini .room h3{font-size:18px; margin:12px 0 2px}
+.room-grid.mini .room .room-tag{margin:0; font-size:10px}
+.room-grid.mini .room:hover h3{color:#E0A184}
+.room-grid.mini .room.current{opacity:.4; pointer-events:none}
+
+/* card delle sale nella pagina "Le 8 sale" */
+.room a.room-link{
+  display:inline-block; margin-top:12px; text-decoration:none; font-size:12px; letter-spacing:.14em;
+  text-transform:uppercase; color:#D89A7A; border-bottom:1px solid rgba(216,154,122,.4); padding-bottom:3px;
+}
+.room a.room-link:hover{color:var(--sand); border-color:var(--sand)}
+.room h3 a{text-decoration:none}
+.room h3 a:hover{color:#E0A184}
+
+@media(max-width:900px){
+  .rhero{min-height:78svh}
+  .rhero .wrap{padding-top:120px}
+}
+@media(max-width:600px){ .rhero .num{display:none} }
