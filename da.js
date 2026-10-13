@@ -12,6 +12,8 @@
   var CODICE = /^[a-z]{1,16}-[a-km-np-z2-9]{8}$/;
   var m = /[?&]da=([^&#]+)/.exec(location.search), codice = '';
   try { codice = m ? decodeURIComponent(m[1]).toLowerCase().trim() : ''; } catch (e) {}
+  // la punteggiatura che un messaggio attacca in fondo al link si lascia: conta il codice all'inizio
+  var inizio = /^[a-z]{1,16}-[a-km-np-z2-9]{8}/.exec(codice); if (inizio) codice = inizio[0];
   var ricordo = null;
   try { ricordo = JSON.parse(sessionStorage.getItem('da') || 'null'); } catch (e) {}
   function ricorda(d) { try { sessionStorage.setItem('da', JSON.stringify(d)); } catch (e) {} }
