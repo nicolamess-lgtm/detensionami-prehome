@@ -9,7 +9,11 @@ const CODICE = /^[a-z]{1,16}-[a-km-np-z2-9]{10}$/;
 
 export function onRequest({ params, next }) {
   // chi lo scrive a mano può mettere una maiuscola: il codice è tutto minuscolo
-  const codice = String(params.codice || '').toLowerCase();
+  // e la punteggiatura che un messaggio attacca in fondo al link («…pr4,», «…pr4.», «…pr4)») si toglie:
+  // senza, il codice non torna e il sito risponde con una pagina senza grafica
+  let codice = String(params.codice || '').toLowerCase();
+  try { codice = decodeURIComponent(codice); } catch (e) {}
+  codice = codice.replace(/[^a-z0-9]+$/, '');
   if (!CODICE.test(codice)) return next();
   // il codice va dopo il «#»: da lì in poi il browser non lo manda a nessun server
   return new Response(null, {
