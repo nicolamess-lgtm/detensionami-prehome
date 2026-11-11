@@ -4,6 +4,8 @@
    - Foto: su ogni foto compaiono «Inquadratura» (trascini la foto per decidere
      quale parte si vede: si salva come object-position) e «Cambia foto».
    - Schede e voci di elenco: ⧉ duplica / ✕ elimina.
+   - Libri: 🔗 apre i link del libro (Amazon, lettore e audiolibro, altro):
+     diventano pulsanti sotto il libro, in <p class="k-links">.
    - Salva → POST /api/save. In locale scrive il file; online la funzione
      Cloudflare fa il commit su GitHub e il sito si ripubblica da solo.
    Le foto nuove vanno in catalogo/…/img/, così non si toccano quelle del sito. */
@@ -15,7 +17,7 @@
   const dir = page.slice(0, page.lastIndexOf('/') + 1);      // /catalogo/ oppure /catalogo/2025/
   const file = page.replace(/^\//, '');
   const BLOCK = 'div,p,ul,ol,li,details,summary,figure,figcaption,img,svg,canvas,form,input,textarea,select,button,label,fieldset,output,h1,h2,h3,h4,h5,h6,section,article,nav,header,footer,table,video,iframe,blockquote';
-  const SKIP = 'script,style,noscript,input,textarea,select,button,canvas,svg,.ed-tools,.ed-imgtools,.ed-bar';
+  const SKIP = 'script,style,noscript,input,textarea,select,button,canvas,svg,.ed-tools,.ed-imgtools,.ed-bar,.ed-links,.k-links';
   const REPEAT = '.k-card,.k-books li,.k-prices li,.k-facts li';
   const roots = () => [document.getElementById('copertina'), document.querySelector('main')].filter(Boolean);
   let dirty = false;
@@ -43,6 +45,21 @@
     .editing .ed-rep:hover > .ed-tools{opacity:1}
     .ed-tools button{width:28px;height:28px;border-radius:50%;border:0;background:#1B1714;color:#fff;font:14px/1 system-ui;display:grid;place-items:center;box-shadow:0 4px 12px rgba(0,0,0,.3);cursor:pointer}
     .ed-tools button.del{background:#A8573A}
+    .ed-tools button.lnk{background:#fff;color:#1B1714}
+    .ed-links{position:fixed;inset:0;z-index:100001;background:rgba(27,23,20,.55);display:grid;place-items:center;padding:16px;font:14px/1.4 system-ui,sans-serif}
+    .ed-links-box{background:#fff;color:#1B1714;border-radius:16px;padding:20px;width:min(640px,100%);max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+    .ed-links-box h4{margin:0 0 4px;font:600 17px system-ui,sans-serif}
+    .ed-links-box p{margin:0 0 14px;color:#5b5048;font-size:13px}
+    .ed-links-row{display:grid;grid-template-columns:180px 1fr 32px;gap:6px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #eee}
+    .ed-links-row input,.ed-links-row select{height:36px;border:1px solid #ccc;border-radius:8px;padding:0 10px;font:14px system-ui,sans-serif;min-width:0}
+    .ed-links-row .u{grid-column:1 / 3}
+    .ed-links-row .x{grid-row:1 / 3;grid-column:3;border:0;background:#A8573A;color:#fff;border-radius:50%;width:30px;height:30px;cursor:pointer;align-self:center}
+    .ed-links-foot{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:6px}
+    .ed-links-foot button{height:38px;padding:0 16px;border-radius:999px;border:1px solid #1B1714;background:#fff;font:600 14px system-ui,sans-serif;cursor:pointer}
+    .ed-links-foot .ok{background:#A8573A;border-color:#A8573A;color:#fff}
+    .ed-links-foot .add{margin-right:auto}
+    .ed-links-err{color:#b3261e;font-size:13px;min-height:1em;margin-top:4px}
+    @media (max-width:520px){.ed-links-row{grid-template-columns:1fr 32px}.ed-links-row .t,.ed-links-row .n,.ed-links-row .u{grid-column:1}.ed-links-row .x{grid-column:2;grid-row:1 / 4}}
     .ed-host{position:relative}
     .ed-imgtools{position:absolute;left:12px;top:12px;z-index:6;display:flex;gap:6px}
     .cover .ed-imgtools{top:auto;bottom:16px;left:auto;right:16px}
@@ -100,7 +117,8 @@
         if (item.querySelector(':scope > .ed-tools')) return;
         item.classList.add('ed-rep');
         const t = document.createElement('div'); t.className = 'ed-tools'; t.contentEditable = 'false';
-        t.innerHTML = '<button type="button" class="dup" title="Duplica">⧉</button><button type="button" class="del" title="Elimina">✕</button>';
+        t.innerHTML = (item.matches('.k-books li') ? '<button type="button" class="lnk" title="Link del libro">🔗</button>' : '')
+          + '<button type="button" class="dup" title="Duplica">⧉</button><button type="button" class="del" title="Elimina">✕</button>';
         item.appendChild(t);
       });
     });
@@ -108,11 +126,12 @@
   arm();
 
   document.addEventListener('click', e => {
-    if (e.target.closest('.ed-bar, .ed-frame')) return;
+    if (e.target.closest('.ed-bar, .ed-frame, .ed-links')) return;
     const tools = e.target.closest('.ed-tools');
     if (tools) {
       const item = tools.parentElement;
-      if (e.target.closest('.del')) { if (confirm('Eliminare questo elemento?')) { item.remove(); dirty = true; } }
+      if (e.target.closest('.lnk')) linkLibro(item);
+      else if (e.target.closest('.del')) { if (confirm('Eliminare questo elemento?')) { item.remove(); dirty = true; } }
       else if (e.target.closest('.dup')) { const c = item.cloneNode(true); c.querySelector(':scope > .ed-tools')?.remove(); c.querySelectorAll('[id]').forEach(n => n.removeAttribute('id')); if (c.id) c.removeAttribute('id'); item.after(c); arm(); dirty = true; }
       e.preventDefault(); return;
     }
@@ -142,6 +161,82 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'Enter' && e.target.closest('[contenteditable="true"]') && !e.shiftKey) { e.preventDefault(); document.execCommand('insertLineBreak'); }
   });
+
+  /* ---------- link dei libri ---------- */
+  // tipo → testo proposto del pulsante; «amazon» è il pulsante pieno
+  const TIPI = [
+    ['amazon', 'Acquista su Amazon'],
+    ['lettore', 'Leggi e ascolta l\'audiolibro'],
+    ['leggi', 'Leggi online'],
+    ['audio', 'Ascolta l\'audiolibro'],
+    ['altro', 'Scopri di più'],
+  ];
+  const testoDi = tipo => (TIPI.find(t => t[0] === tipo) || TIPI[4])[1];
+  function linkLibro(li) {
+    const titolo = li.querySelector('h3')?.textContent.trim() || 'il libro';
+    const presenti = [...li.querySelectorAll('.k-links a')].map(a => ({ tipo: a.dataset.tipo || 'altro', testo: a.textContent.trim(), url: a.getAttribute('href') || '' }));
+    const ov = document.createElement('div'); ov.className = 'ed-links';
+    ov.innerHTML = `<div class="ed-links-box" role="dialog" aria-label="Link del libro">
+      <h4></h4><p>Diventano pulsanti sotto il libro, in quest'ordine. Il primo «Acquista su Amazon» è il pulsante pieno.</p>
+      <div class="ed-links-list"></div><div class="ed-links-err"></div>
+      <div class="ed-links-foot"><button type="button" class="add">＋ Link</button><button type="button" class="no">Annulla</button><button type="button" class="ok">Fatto</button></div></div>`;
+    ov.querySelector('h4').textContent = 'Link · ' + titolo;
+    const list = ov.querySelector('.ed-links-list');
+    const riga = (l = { tipo: 'amazon', testo: '', url: '' }) => {
+      const r = document.createElement('div'); r.className = 'ed-links-row';
+      r.innerHTML = `<select class="t">${TIPI.map(([v, n]) => `<option value="${v}">${v === 'amazon' ? 'Amazon' : v === 'lettore' ? 'Lettore + audiolibro' : v === 'leggi' ? 'Lettore' : v === 'audio' ? 'Audiolibro' : 'Altro'}</option>`).join('')}</select>
+        <input class="n" type="text" maxlength="60" placeholder="Testo del pulsante"><input class="u" type="url" placeholder="https://…"><button type="button" class="x" title="Togli">✕</button>`;
+      r.querySelector('.t').value = TIPI.some(t => t[0] === l.tipo) ? l.tipo : 'altro';
+      r.querySelector('.n').value = l.testo || testoDi(r.querySelector('.t').value);
+      r.querySelector('.u').value = l.url;
+      r.querySelector('.t').addEventListener('change', () => {
+        const n = r.querySelector('.n');
+        if (!n.value.trim() || TIPI.some(t => t[1] === n.value.trim())) n.value = testoDi(r.querySelector('.t').value);
+      });
+      r.querySelector('.x').addEventListener('click', () => r.remove());
+      list.appendChild(r);
+      return r;
+    };
+    (presenti.length ? presenti : [undefined]).forEach(l => riga(l));
+    const chiudi = () => { ov.remove(); removeEventListener('keydown', esc, true); };
+    const esc = e => { if (e.key === 'Escape') chiudi(); };
+    addEventListener('keydown', esc, true);
+    ov.addEventListener('click', e => { if (e.target === ov) chiudi(); });
+    ov.querySelector('.add').addEventListener('click', () => {
+      const r = riga({ tipo: list.children.length ? 'lettore' : 'amazon', testo: '', url: '' });
+      r.querySelector('.u').focus();
+    });
+    ov.querySelector('.no').addEventListener('click', chiudi);
+    ov.querySelector('.ok').addEventListener('click', () => {
+      const err = ov.querySelector('.ed-links-err'); err.textContent = '';
+      const nuovi = [];
+      for (const r of list.children) {
+        const url = r.querySelector('.u').value.trim(), testo = r.querySelector('.n').value.trim().replace(/\s+/g, ' ');
+        const tipo = r.querySelector('.t').value;
+        if (!url && !testo) continue;
+        let u; try { u = new URL(url); } catch { u = null; }
+        if (!u || !/^https?:$/.test(u.protocol)) { err.textContent = 'Indirizzo non valido: deve iniziare con https://'; r.querySelector('.u').focus(); return; }
+        nuovi.push({ tipo, testo: testo || testoDi(tipo), url: u.href });
+      }
+      const dove = li.querySelector(':scope > div') || li;
+      dove.querySelector('.k-links')?.remove();
+      if (nuovi.length) {
+        const p = document.createElement('p'); p.className = 'k-links';
+        nuovi.forEach(l => {
+          const a = document.createElement('a');
+          a.className = 'k-link' + (l.tipo === 'amazon' ? ' pieno' : '');
+          a.dataset.tipo = l.tipo; a.href = l.url; a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = l.testo;
+          p.appendChild(a);
+        });
+        dove.appendChild(p);
+      }
+      dirty = true; chiudi();
+      say(nuovi.length ? `Link di «${titolo}» aggiornati (non ancora pubblicati).` : `Link di «${titolo}» tolti (non ancora pubblicati).`);
+    });
+    document.body.appendChild(ov);
+    list.querySelector('.u')?.focus();
+  }
 
   /* ---------- inquadratura: trascini la foto ---------- */
   const posOf = img => {
