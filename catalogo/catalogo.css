@@ -1,0 +1,258 @@
+/* Catalogo digitale Detensionami.
+   Parte da studio.css (colori, font, pulsanti, testata) e aggiunge:
+   indice delle sezioni (barra che scorre su telefono, colonna fissa da 1280px),
+   "doppie pagine" testo + foto, schede, e la scala per schermi FHD/QHD. */
+
+:root{--toc-h:52px}
+[id]{scroll-margin-top:calc(var(--header-h) + var(--toc-h) + 12px)}
+
+/* ---------- copertina ---------- */
+.cover{
+  position:relative; color:#fff; overflow:hidden; background:var(--espresso);
+  min-height:min(92vh, 980px); display:flex; align-items:flex-end;
+}
+.cover>img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 40%; opacity:.9}
+.cover::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(20,16,13,.95) 0%, rgba(20,16,13,.55) 50%, rgba(20,16,13,.15) 100%);
+}
+.cover .wrap{position:relative; z-index:2; width:100%; padding-top:140px; padding-bottom:clamp(48px,7vw,90px)}
+.cover .eyebrow{color:#E9C9B6}
+.cover h1{font-size:clamp(46px,8vw,112px); line-height:.98; max-width:12ch}
+.cover .lede{font-size:clamp(17px,1.9vw,22px); max-width:48ch; color:rgba(255,255,255,.86); margin:26px 0 0}
+.cover .place{
+  margin-top:34px; font-size:11.5px; letter-spacing:.26em; text-transform:uppercase; color:rgba(237,228,217,.7)
+}
+
+/* ---------- indice ---------- */
+.toc{
+  position:sticky; top:var(--header-h); z-index:40;
+  background:rgba(246,241,234,.96); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.toc ol{
+  list-style:none; margin:0 auto; padding:0 20px; max-width:var(--wrap);
+  display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; height:var(--toc-h); align-items:center;
+  -webkit-overflow-scrolling:touch;
+}
+.toc ol::-webkit-scrollbar{display:none}
+.toc a{
+  display:block; white-space:nowrap; text-decoration:none;
+  font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft);
+  padding:8px 12px; border-radius:999px; border:1px solid transparent;
+}
+.toc a:hover{color:var(--clay)}
+.toc a[aria-current="true"]{border-color:var(--clay); color:var(--clay)}
+.toc .toc-title{display:none}
+
+/* ---------- capitoli ---------- */
+.chapter{padding:clamp(64px,8vw,130px) 0; border-bottom:1px solid var(--line)}
+.chapter.alt{background:var(--sand-2)}
+.chapter.dark{background:var(--espresso); color:var(--sand); border-color:rgba(237,228,217,.12)}
+.chapter.dark .eyebrow{color:#D89A7A}
+.chapter.dark p, .chapter.dark li{color:rgba(237,228,217,.8)}
+.chapter.dark .sub{color:rgba(237,228,217,.62)}
+
+.head{display:flex; align-items:flex-start; justify-content:space-between; gap:16px}
+.head h2{max-width:18ch}
+.sub{
+  font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
+  margin:16px 0 30px; line-height:1.6;
+}
+.lead{font-size:clamp(18px,1.6vw,21px); line-height:1.6; color:var(--ink-soft); max-width:62ch}
+.chapter.dark .lead{color:rgba(237,228,217,.86)}
+.prose{max-width:64ch}
+.prose p{color:var(--ink-soft)}
+
+/* pulsante "copia link" della sezione */
+.share{
+  flex:none; display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  background:none; border:1px solid var(--line); border-radius:999px;
+  padding:9px 14px; font:500 11px/1 var(--sans); letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); margin-top:6px; transition:color .2s, border-color .2s;
+}
+.share:hover{color:var(--clay); border-color:var(--clay)}
+.share svg{width:14px; height:14px}
+.share.done{color:var(--clay); border-color:var(--clay)}
+.chapter.dark .share{border-color:rgba(237,228,217,.25); color:rgba(237,228,217,.7)}
+
+/* doppia pagina: testo + foto */
+.spread{display:grid; gap:clamp(32px,4vw,72px); align-items:center}
+.spread figure{margin:0; position:relative}
+.spread figure img{width:100%; aspect-ratio:4/5; object-fit:cover; background:var(--sand-2)}
+.spread figure.wide img{aspect-ratio:16/10}
+.spread figcaption{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:12px}
+.chapter.dark .spread figcaption{color:rgba(237,228,217,.5)}
+
+.k-note{
+  border-left:2px solid var(--clay); padding:4px 0 4px 20px; margin:26px 0 0;
+  color:var(--ink); font-size:16.5px;
+}
+.chapter.dark .k-note{color:var(--sand)}
+.k-more{
+  display:inline-flex; gap:8px; align-items:center; margin-top:26px;
+  font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:500;
+  color:var(--clay); text-decoration:none; border-bottom:1px solid currentColor; padding-bottom:3px;
+}
+.chapter.dark .k-more{color:#D89A7A}
+
+/* schede */
+.k-cards{display:grid; gap:18px; margin-top:40px}
+.k-card{background:var(--paper); border:1px solid var(--line); padding:28px 26px}
+.chapter.dark .k-card{background:rgba(255,255,255,.04); border-color:rgba(237,228,217,.14)}
+.k-card .k-tag{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--clay); font-weight:500; margin:0 0 12px}
+.chapter.dark .k-card .k-tag{color:#D89A7A}
+.k-card h3{font-size:clamp(24px,2.2vw,30px); margin-bottom:12px}
+.k-card p{font-size:15.5px; color:var(--ink-soft); margin:0}
+.chapter.dark .k-card h3{color:var(--sand)}
+.k-card .num{font-family:var(--serif); font-size:40px; line-height:1; color:var(--clay); display:block; margin-bottom:10px}
+
+.badge{
+  display:inline-block; margin:6px 0 0; padding:10px 16px; border:1px solid var(--clay);
+  font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--clay); line-height:1.5
+}
+
+/* libri */
+.k-books{list-style:none; margin:40px 0 0; padding:0; display:grid; gap:0 48px}
+.k-books li{border-top:1px solid var(--line); padding:20px 0; display:grid; grid-template-columns:42px 1fr; gap:6px 16px}
+.k-books .n{font-family:var(--serif); font-size:24px; color:var(--clay); line-height:1.2}
+.k-books h3{font-size:22px; margin-bottom:6px}
+.k-books p{font-size:15px; color:var(--ink-soft); margin:0}
+.k-books .st{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); display:block; margin-top:8px}
+
+/* qualifiche */
+.k-facts{list-style:none; padding:0; margin:28px 0 0}
+.k-facts li{border-top:1px solid var(--line); padding:12px 0; font-size:15.5px}
+
+/* chiusura */
+.closing{text-align:center}
+.closing blockquote{
+  font-family:var(--serif); font-weight:300; font-size:clamp(30px,4.2vw,58px); line-height:1.12;
+  margin:0 auto 46px; max-width:20ch; color:var(--sand)
+}
+.contacts{display:grid; gap:1px; background:rgba(237,228,217,.14); max-width:900px; margin:0 auto 40px}
+.contacts div{background:var(--espresso); padding:24px}
+.contacts small{display:block; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#D89A7A; margin-bottom:8px}
+.contacts a{text-decoration:none; color:var(--sand)}
+.closing .btns{display:flex; flex-wrap:wrap; gap:12px; justify-content:center}
+
+.foot{padding:28px 0 40px; text-align:center; font-size:12.5px; color:var(--muted)}
+.foot a{color:inherit}
+
+/* ============ da tablet ============ */
+@media (min-width:768px){
+  .k-cards.c2{grid-template-columns:repeat(2,1fr)}
+  .k-cards.c3{grid-template-columns:repeat(3,1fr)}
+  .k-cards.c4{grid-template-columns:repeat(2,1fr)}
+  .k-books{grid-template-columns:1fr 1fr}
+  .contacts{grid-template-columns:repeat(3,1fr)}
+}
+@media (min-width:960px){
+  .spread{grid-template-columns:1.05fr .95fr}
+  .spread.flip>figure{order:-1}
+  .spread.flip{grid-template-columns:.95fr 1.05fr}
+  .k-cards.c4{grid-template-columns:repeat(4,1fr)}
+}
+
+/* ============ desktop largo: indice a colonna ============ */
+@media (min-width:1280px){
+  :root{--toc-h:0px; --wrap:1180px}
+  .layout{display:grid; grid-template-columns:230px minmax(0,1fr)}
+  .toc{
+    position:sticky; top:var(--header-h); align-self:start; height:calc(100vh - var(--header-h));
+    border-bottom:0; border-right:1px solid var(--line); background:var(--sand); overflow-y:auto;
+  }
+  .toc .toc-title{display:block; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--clay); padding:34px 26px 12px; font-weight:500}
+  .toc ol{flex-direction:column; align-items:stretch; height:auto; padding:0 14px 30px; gap:2px; overflow:visible}
+  .toc a{border-radius:2px; padding:9px 12px; font-size:11.5px}
+  .toc a[aria-current="true"]{border-color:transparent; background:var(--sand-2)}
+  .layout .wrap{padding:0 clamp(40px,4vw,80px)}
+}
+
+/* ============ FHD e oltre ============ */
+@media (min-width:1800px){
+  :root{--wrap:1400px}
+  body{font-size:18px}
+  .layout{grid-template-columns:270px minmax(0,1fr)}
+  .k-card p, .k-books p, .k-facts li{font-size:16.5px}
+}
+/* ============ QHD (2560) ============ */
+@media (min-width:2300px){
+  :root{--wrap:1680px; --header-h:84px}
+  body{font-size:20px}
+  .lead{font-size:24px}
+  .layout{grid-template-columns:320px minmax(0,1fr)}
+  .toc a{font-size:13px; padding:11px 14px}
+  .k-card{padding:36px 34px}
+  .k-card p, .k-books p, .k-facts li{font-size:18px}
+  .k-books h3{font-size:26px}
+}
+
+/* ============ telefono ============ */
+@media (max-width:899px){
+  .nav-links{display:none}
+  .site-header .nav>.btn{display:none}
+  .back-link{display:inline-flex !important}
+}
+@media (max-width:560px){
+  .wrap{padding:0 20px}
+  .head{flex-direction:column; gap:4px}
+  .share{margin-top:14px}
+  .k-card{padding:24px 20px}
+}
+.back-link{
+  display:none; align-items:center; gap:8px; text-decoration:none;
+  font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);
+}
+
+/* ============ stampa ============ */
+@media print{
+  .site-header, .toc, .share, .closing .btns{display:none !important}
+  .layout{display:block}
+  .chapter{padding:28px 0; break-inside:avoid-page}
+  .chapter.dark, .cover{background:#fff; color:#000}
+  .cover{min-height:auto}
+  .cover>img, .cover::after{display:none}
+  .cover h1, .cover .lede{color:#000}
+}
+
+/* ---------- listino ---------- */
+.k-price-grid{display:grid; gap:48px; margin-top:36px}
+@media (min-width:960px){ .k-price-grid{grid-template-columns:1fr 1fr; gap:64px} }
+.k-price-title{font-size:clamp(24px,2.2vw,30px); margin-bottom:8px}
+.k-prices{list-style:none; margin:0; padding:0}
+.k-prices li{display:flex; justify-content:space-between; align-items:baseline; gap:18px; padding:16px 0; border-bottom:1px solid var(--line)}
+.k-prices span{font-weight:400}
+.k-prices small{display:block; font-size:13.5px; color:var(--muted); font-weight:300; margin-top:2px; line-height:1.45}
+.k-prices b{font-family:var(--serif); font-weight:400; font-size:clamp(24px,2vw,30px); white-space:nowrap; text-align:right; line-height:1.1}
+.k-prices em{display:block; font-family:var(--sans); font-style:normal; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.k-small{font-size:14px; color:var(--muted); margin-top:16px}
+.k-cost{margin-top:18px !important; font-family:var(--serif); font-size:30px; color:var(--ink) !important; line-height:1}
+.k-cost s{font-size:20px; color:var(--muted); margin-right:8px}
+@media (min-width:2300px){ .k-prices small, .k-small{font-size:16px} }
+
+/* nessuna scheda deve allargare la pagina sul telefono */
+.k-cards>*, .spread>*, .k-price-grid>*{min-width:0}
+.k-card .k-tag, .sub, .badge{overflow-wrap:anywhere}
+html, body{overflow-x:clip}
+/* su telefono e tablet la foto non deve occupare uno schermo intero */
+@media (max-width:959px){ .spread figure img{aspect-ratio:16/10} }
+
+/* ---------- foto del catalogo B8 ---------- */
+.k-banner{margin:34px 0 0}
+.k-banner img{width:100%; aspect-ratio:21/9; object-fit:cover; background:var(--sand-2)}
+.k-banner + .k-cards, .k-banner + .lead{margin-top:34px}
+.k-gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:28px}
+.k-gallery figure{margin:0}
+.k-gallery img{width:100%; aspect-ratio:3/4; object-fit:cover}
+@media (max-width:560px){
+  .k-gallery{grid-template-columns:1fr 1fr}
+  .k-gallery figure:first-child{grid-column:1 / -1}
+  .k-gallery figure:first-child img{aspect-ratio:16/10}
+  .k-banner img{aspect-ratio:16/9}
+}
+/* libri con la copertina */
+.k-books li{grid-template-columns:76px 1fr; gap:18px; align-items:start}
+.k-books .cover-img{width:76px; aspect-ratio:2/3; object-fit:cover; box-shadow:0 6px 18px rgba(27,23,20,.18)}
+.k-books .n{display:block; font-size:18px; margin-bottom:2px}
+@media (min-width:1800px){ .k-books li{grid-template-columns:96px 1fr} .k-books .cover-img{width:96px} }
