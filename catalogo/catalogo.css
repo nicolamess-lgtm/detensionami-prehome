@@ -64,18 +64,6 @@
 .prose{max-width:64ch}
 .prose p{color:var(--ink-soft)}
 
-/* pulsante "copia link" della sezione */
-.share{
-  flex:none; display:inline-flex; align-items:center; gap:8px; cursor:pointer;
-  background:none; border:1px solid var(--line); border-radius:999px;
-  padding:9px 14px; font:500 11px/1 var(--sans); letter-spacing:.14em; text-transform:uppercase;
-  color:var(--muted); margin-top:6px; transition:color .2s, border-color .2s;
-}
-.share:hover{color:var(--clay); border-color:var(--clay)}
-.share svg{width:14px; height:14px}
-.share.done{color:var(--clay); border-color:var(--clay)}
-.chapter.dark .share{border-color:rgba(237,228,217,.25); color:rgba(237,228,217,.7)}
-
 /* doppia pagina: testo + foto */
 .spread{display:grid; gap:clamp(32px,4vw,72px); align-items:center}
 .spread figure{margin:0; position:relative}
@@ -202,7 +190,6 @@
 @media (max-width:560px){
   .wrap{padding:0 20px}
   .head{flex-direction:column; gap:4px}
-  .share{margin-top:14px}
   .k-card{padding:24px 20px}
 }
 .back-link{
@@ -212,7 +199,7 @@
 
 /* ============ stampa ============ */
 @media print{
-  .site-header, .toc, .share, .closing .btns{display:none !important}
+  .site-header, .toc, .closing .btns{display:none !important}
   .layout{display:block}
   .chapter{padding:28px 0; break-inside:avoid-page}
   .chapter.dark, .cover{background:#fff; color:#000}

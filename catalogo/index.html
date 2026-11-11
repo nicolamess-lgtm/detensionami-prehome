@@ -423,27 +423,7 @@
 /* Modalità modifica (dal gestionale): con ?edit parte solo edit.js e la
    pagina resta il file HTML puro, senza i pulsanti aggiunti qui sotto. */
 if (/[?&]edit\b/.test(location.search)) { var ed = document.createElement('script'); ed.src = 'edit.js'; document.body.appendChild(ed); } else
-/* Ogni capitolo ha il suo pulsante «Copia link»: sul telefono apre la
-   condivisione (WhatsApp, Messaggi…), altrove copia l'indirizzo con #sezione. */
 (function () {
-  var icona = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg>';
-  var tocco = matchMedia('(pointer:coarse)').matches && navigator.share;
-  document.querySelectorAll('.chapter[id] .head').forEach(function (head) {
-    var sez = head.closest('.chapter'), titolo = head.querySelector('h2').textContent;
-    var b = document.createElement('button');
-    b.type = 'button'; b.className = 'share';
-    b.innerHTML = icona + '<span>' + (tocco ? 'Condividi' : 'Copia link') + '</span>';
-    b.setAttribute('aria-label', 'Link alla sezione ' + titolo);
-    b.addEventListener('click', function () {
-      var url = location.origin + location.pathname + '#' + sez.id;
-      if (tocco) { navigator.share({ title: titolo + ' · Detensionami', url: url }).catch(function () {}); return; }
-      var fatto = function () { b.classList.add('done'); b.querySelector('span').textContent = 'Copiato'; setTimeout(function () { b.classList.remove('done'); b.querySelector('span').textContent = 'Copia link'; }, 1800); };
-      if (navigator.clipboard) navigator.clipboard.writeText(url).then(fatto, function () { prompt('Copia il link:', url); });
-      else prompt('Copia il link:', url);
-    });
-    head.appendChild(b);
-  });
-
   /* indice: evidenzia la sezione che stai leggendo */
   var voci = {};
   document.querySelectorAll('.toc a').forEach(function (a) { voci[a.getAttribute('href').slice(1)] = a; });
