@@ -8,6 +8,18 @@
 // /catalogo/2025/…). Se il link è di un'altra versione, si va lì.
 // Fogli di stile, immagini e script passano: si guardano solo le pagine.
 //
+// I prezzi (§69, dal 15/01): se la versione ha un listino nel gestionale,
+// catalogo_apri() li manda col percorso, e qui si scrivono nella pagina al
+// posto di quelli segnati con data-prezzo:
+//   durata:60                  → prezzo per durata del listino
+//   pacchetto:5x60             → prezzo pieno del pacchetto 5 × 60 minuti
+//   pacchetto:5x60:anticipato  → prezzo anticipato dello stesso pacchetto
+//   risparmio:52x60            → pieno meno anticipato
+//   altro:<nome>               → «Altri prezzi del catalogo» del listino, per nome
+// Un prezzo che il listino non ha resta quello scritto. Con ?edit no: l'editor
+// lavora sulla pagina com'è. Senza catalogo_apri (SQL non ancora incollato)
+// si torna a catalogo_percorso, coi prezzi della pagina.
+//
 // L'editor (/catalogo/?edit, catalogo/edit.js) non ha un codice: passa con la
 // password dell'editor (EDIT_PASSWORD, la stessa di /api/save), chiesta dal
 // browser una volta (autenticazione HTTP Basic, nome qualsiasi). Il browser la
@@ -33,6 +45,32 @@ a{display:inline-block;background:#A8573A;color:#fff;text-decoration:none;paddin
     status: guasto ? 503 : 403,
     headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex', 'Referrer-Policy': 'no-referrer' },
   });
+}
+
+// 1500 → «1.500 €», 12.5 → «12,50 €»
+export function euro(n) {
+  const x = Math.round(Number(n) * 100) / 100;
+  const [intera, dec] = x.toFixed(2).split('.');
+  return intera.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (dec === '00' ? '' : ',' + dec) + ' €';
+}
+const normale = (t) => String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim();
+// il prezzo di una chiave data-prezzo nei prezzi del listino; undefined se non c'è
+export function prezzoPer(chiave, p) {
+  if (!p || !chiave) return undefined;
+  const [tipo, a, b] = String(chiave).split(':');
+  let v;
+  if (tipo === 'durata') v = p.durata && p.durata[a];
+  else if (tipo === 'pacchetto' || tipo === 'risparmio') {
+    const [sedute, minuti] = String(a || '').split('x').map(Number);
+    const k = (Array.isArray(p.pacchetti) ? p.pacchetti : []).find((k) => Number(k.sedute) === sedute && Number(k.minuti || 60) === minuti);
+    if (k) v = tipo === 'risparmio' ? (Number(k.anticipato) > 0 ? Number(k.prezzo) - Number(k.anticipato) : undefined) : b === 'anticipato' ? k.anticipato : k.prezzo;
+  } else if (tipo === 'altro') {
+    const nome = normale(String(chiave).slice(6));
+    const x = (Array.isArray(p.altri) ? p.altri : []).find((x) => normale(x.nome) === nome);
+    if (x) v = x.prezzo;
+  }
+  v = Number(v);
+  return v > 0 ? v : undefined;
 }
 
 function chiediPassword() {
@@ -74,15 +112,24 @@ export async function onRequest({ request, next, env }) {
 
   const codice = (url.searchParams.get('c') || '').toLowerCase().trim();
   if (!CODICE.test(codice)) return riservato(false);
-  let percorso = null;
+  let percorso = null, prezzi = null;
+  const chiedi = (funzione) => fetch(SUPABASE + '/rest/v1/rpc/' + funzione, {
+    method: 'POST',
+    headers: { apikey: CHIAVE, Authorization: 'Bearer ' + CHIAVE, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ p_codice: codice }),
+  });
   try {
-    const r = await fetch(SUPABASE + '/rest/v1/rpc/catalogo_percorso', {
-      method: 'POST',
-      headers: { apikey: CHIAVE, Authorization: 'Bearer ' + CHIAVE, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ p_codice: codice }),
-    });
-    if (!r.ok) return riservato(true);
-    percorso = await r.json();
+    let r = await chiedi('catalogo_apri');
+    if (r.status === 404) {
+      // catalogo_apri non c'è ancora: il percorso solo, coi prezzi della pagina
+      r = await chiedi('catalogo_percorso');
+      if (!r.ok) return riservato(true);
+      percorso = await r.json();
+    } else {
+      if (!r.ok) return riservato(true);
+      const d = await r.json();
+      if (d && typeof d === 'object') { percorso = d.percorso; prezzi = d.prezzi || null; }
+    }
   } catch (e) {
     return riservato(true);
   }
@@ -96,5 +143,12 @@ export async function onRequest({ request, next, env }) {
     return new Response(null, { status: 302, headers: { Location: dove.toString(), 'Cache-Control': 'no-store' } });
   }
 
-  return senzaCache(await next());
+  const pagina = senzaCache(await next());
+  if (!prezzi || typeof HTMLRewriter === 'undefined' || !/text\/html/i.test(pagina.headers.get('Content-Type') || '')) return pagina;
+  return new HTMLRewriter().on('[data-prezzo]', {
+    element(el) {
+      const v = prezzoPer(el.getAttribute('data-prezzo'), prezzi);
+      if (v !== undefined) el.setInnerContent(euro(v));
+    },
+  }).transform(pagina);
 }
