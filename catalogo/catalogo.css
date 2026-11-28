@@ -255,3 +255,24 @@ html, body{overflow-x:clip}
 .editing [data-solo], .editing [data-tranne]{outline:2px dashed #A8573A; outline-offset:12px; margin:28px 0}
 .editing [data-solo]::before{content:"Solo nel catalogo " attr(data-solo); display:inline-block; font:500 11px/1 Inter,system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; background:#A8573A; color:#fff; padding:6px 10px; border-radius:999px}
 .editing [data-tranne]::before{content:"In tutti i cataloghi tranne " attr(data-tranne); display:inline-block; font:500 11px/1 Inter,system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; background:#5b5048; color:#fff; padding:6px 10px; border-radius:999px}
+
+/* Listino della versione T: servizio per servizio, come la pagina di Treatwell
+   (variante, tempo in studio, prezzo). */
+.tw .k-price-title{margin-top:40px}
+.tw-legenda{display:grid; grid-template-columns:1fr 110px 90px; gap:12px; margin:28px 0 0; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.tw-legenda span:nth-child(n+2){text-align:right}
+.tw-lista{display:grid; gap:0 64px}
+@media (min-width:960px){ .tw-lista{grid-template-columns:1fr 1fr} .tw-legenda{display:none} }
+.tw-s{padding:16px 0; border-bottom:1px solid var(--line); break-inside:avoid}
+.tw-s h4{margin:0 0 6px; font-weight:500; font-size:16px; letter-spacing:0}
+.tw-ev{display:inline-block; margin-left:8px; font:500 10px/1 var(--sans); font-style:normal; letter-spacing:.12em; text-transform:uppercase; color:#1f7a74; background:#dff1ef; padding:4px 8px; border-radius:999px; vertical-align:2px}
+.tw-s ul{list-style:none; margin:0; padding:0}
+.tw-s li{display:grid; grid-template-columns:1fr 110px 90px; gap:12px; align-items:baseline; padding:3px 0; font-weight:300}
+.tw-s .tw-n{grid-column:1}
+.tw-s .tw-t{grid-column:2; text-align:right; color:var(--muted); font-size:14.5px; white-space:nowrap}
+.tw-s b{grid-column:3; text-align:right; font-family:var(--serif); font-weight:400; font-size:22px; white-space:nowrap}
+.tw-uno h4{margin:0}
+.tw-uno{display:grid; grid-template-columns:1fr 212px; gap:12px; align-items:baseline}
+.tw-uno li{grid-template-columns:110px 90px}
+.tw-uno .tw-t{grid-column:1} .tw-uno b{grid-column:2}
+@media (max-width:520px){ .tw-s li{grid-template-columns:1fr 84px 64px; gap:8px} .tw-uno{grid-template-columns:1fr 156px} .tw-uno li{grid-template-columns:84px 64px} .tw-s b{font-size:19px} }

@@ -332,34 +332,120 @@
           </div>
         </div>
       </div>
-      <!-- solo nella versione T: gli stessi servizi, durate e prezzi della pagina di Treatwell -->
-      <div data-solo="T">
-        <p class="sub">Gli stessi massaggi, le stesse durate e gli stessi prezzi che trovi su Treatwell</p>
-        <div class="k-price-grid">
-          <div>
-            <h3 class="k-price-title">Massaggi da 45 minuti in su</h3>
-            <ul class="k-prices">
-              <li><span>45 minuti<small>Rilassante · Decontratturante · Lomi Lomi · Hawaiano · Personalizzato · Schiena · Localizzato · Gambe</small></span><b data-prezzo="durata:45">60 €</b></li>
-              <li><span>1 ora e 15<small>Rilassante · Decontratturante · Lomi Lomi · Hawaiano · Personalizzato</small></span><b data-prezzo="durata:75">90 €</b></li>
-              <li><span>1 ora e 45<small>Rilassante · Decontratturante · Lomi Lomi · Hawaiano · Personalizzato</small></span><b data-prezzo="durata:105">120 €</b></li>
+      <!-- solo nella versione T: servizi, varianti, tempi e prezzi come sulla pagina di Treatwell (28/11/2026) -->
+      <div data-solo="T" class="tw">
+        <p class="sub">Gli stessi massaggi, tempi e prezzi che trovi su Treatwell · accanto a ogni durata il tempo in studio</p>
+        <p class="tw-legenda"><span>Massaggio</span><span>Tempo in studio</span><span>Prezzo</span></p>
+        <h3 class="k-price-title">Massaggi Classici</h3>
+        <div class="tw-lista">
+          <article class="tw-s">
+            <h4>Massaggio Rilassante</h4>
+            <ul>
+              <li><span class="tw-n">45 minuti</span><span class="tw-t">55 min</span><b data-prezzo="durata:45">60 €</b></li>
+              <li><span class="tw-n">1 ora 15 minuti</span><span class="tw-t">1 h 25 min</span><b data-prezzo="durata:75">90 €</b></li>
+              <li><span class="tw-n">1 ora 45 minuti</span><span class="tw-t">1 h 55 min</span><b data-prezzo="durata:105">120 €</b></li>
             </ul>
-            <p class="k-note"><strong>Il tempo in studio.</strong> Su Treatwell accanto a ogni massaggio vedi anche il tempo in studio: di solito 10 minuti in più, per accoglierti e prepararti con calma. Il massaggio dura sempre quello che hai scelto.</p>
-            <p class="k-small"><strong>Prenotazioni e annullamenti.</strong> Se hai prenotato su Treatwell valgono le condizioni della tua prenotazione.</p>
-          </div>
-          <div>
-            <h3 class="k-price-title">Massaggi da un'ora in su</h3>
-            <ul class="k-prices">
-              <li><span>1 ora<small>Relax Emozionale · Renata França linfodrenante · Drenante · Total Body</small></span><b data-prezzo="durata:60">90 €</b></li>
-              <li><span>1 ora e 30<small>Relax Emozionale · Renata França linfodrenante · Total Body · Manuela Shala addome e gambe</small></span><b data-prezzo="durata:90">120 €</b></li>
-              <li><span>2 ore<small>Relax Emozionale · Renata França linfodrenante</small></span><b data-prezzo="durata:120">160 €</b></li>
-              <li><span>2 ore<small>Total Body</small></span><b data-prezzo="altro:Treatwell · Total Body 2 ore">130 €</b></li>
-              <li><span>2 ore<small>Manuela Shala addome, gambe e viso</small></span><b data-prezzo="altro:Treatwell · Manuela Shala 2 ore">150 €</b></li>
-              <li><span>2 ore e 30<small>Relax Emozionale</small></span><b data-prezzo="durata:150">200 €</b></li>
-              <li><span>3 ore<small>Relax Emozionale</small></span><b data-prezzo="durata:180">250 €</b></li>
-              <li><span>10 massaggi Renata França<small>Pacchetto · 1 ora ciascuno</small></span><b data-prezzo="altro:Treatwell · 10 massaggi Renata França">750 €</b></li>
-            </ul>
-          </div>
+          </article>
         </div>
+        <h3 class="k-price-title">Massaggi</h3>
+        <div class="tw-lista">
+          <article class="tw-s">
+            <h4>Massaggio Relax Emozionale <em class="tw-ev">In evidenza</em></h4>
+            <ul>
+              <li><span class="tw-n">1 ora</span><span class="tw-t">1 h 10 min</span><b data-prezzo="durata:60">90 €</b></li>
+              <li><span class="tw-n">1 ora 30 minuti</span><span class="tw-t">1 h 40 min</span><b data-prezzo="durata:90">120 €</b></li>
+              <li><span class="tw-n">2 ore</span><span class="tw-t">2 h 10 min</span><b data-prezzo="durata:120">160 €</b></li>
+              <li><span class="tw-n">2 ore 30 minuti</span><span class="tw-t">2 h 40 min</span><b data-prezzo="durata:150">200 €</b></li>
+              <li><span class="tw-n">3 ore</span><span class="tw-t">3 h 10 min</span><b data-prezzo="durata:180">250 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s">
+            <h4>Massaggio Decontratturante</h4>
+            <ul>
+              <li><span class="tw-n">45 minuti</span><span class="tw-t">45 min</span><b data-prezzo="durata:45">60 €</b></li>
+              <li><span class="tw-n">1 ora 15 minuti</span><span class="tw-t">1 h 15 min</span><b data-prezzo="durata:75">90 €</b></li>
+              <li><span class="tw-n">1 ora 45 minuti</span><span class="tw-t">1 h 45 min</span><b data-prezzo="durata:105">120 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s">
+            <h4>Massaggio Renata Franca linfodrenante <em class="tw-ev">In evidenza</em></h4>
+            <ul>
+              <li><span class="tw-n">1 ora</span><span class="tw-t">1 h 10 min</span><b data-prezzo="durata:60">90 €</b></li>
+              <li><span class="tw-n">1 ora 30 minuti</span><span class="tw-t">1 h 40 min</span><b data-prezzo="durata:90">120 €</b></li>
+              <li><span class="tw-n">2 ore</span><span class="tw-t">2 h 10 min</span><b data-prezzo="durata:120">160 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s">
+            <h4>Massaggio Lomi Lomi</h4>
+            <ul>
+              <li><span class="tw-n">45 minuti</span><span class="tw-t">55 min</span><b data-prezzo="durata:45">60 €</b></li>
+              <li><span class="tw-n">1 ora 15 minuti</span><span class="tw-t">1 h 25 min</span><b data-prezzo="durata:75">90 €</b></li>
+              <li><span class="tw-n">1 ora 45 minuti</span><span class="tw-t">1 h 55 min</span><b data-prezzo="durata:105">120 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s">
+            <h4>Massaggio Hawaiano</h4>
+            <ul>
+              <li><span class="tw-n">45 minuti</span><span class="tw-t">55 min</span><b data-prezzo="durata:45">60 €</b></li>
+              <li><span class="tw-n">1 ora 15 minuti</span><span class="tw-t">1 h 25 min</span><b data-prezzo="durata:75">90 €</b></li>
+              <li><span class="tw-n">1 ora 45 minuti</span><span class="tw-t">1 h 55 min</span><b data-prezzo="durata:105">120 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s">
+            <h4>Massaggio Manuela Shala Linfodrenante <em class="tw-ev">In evidenza</em></h4>
+            <ul>
+              <li><span class="tw-n">90 min MS addome + gambe</span><span class="tw-t">1 h 40 min</span><b data-prezzo="durata:90">120 €</b></li>
+              <li><span class="tw-n">120 min MS addome + gambe + viso</span><span class="tw-t">2 h 10 min</span><b data-prezzo="altro:Treatwell · Manuela Shala 2 ore">150 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s tw-uno">
+            <h4>Massaggio Drenante</h4>
+            <ul>
+              <li><span class="tw-t">1 h</span><b data-prezzo="durata:60">90 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s tw-uno">
+            <h4>Massaggio Schiena</h4>
+            <ul>
+              <li><span class="tw-t">45 min</span><b data-prezzo="durata:45">60 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s tw-uno">
+            <h4>Massaggio Localizzato</h4>
+            <ul>
+              <li><span class="tw-t">45 min</span><b data-prezzo="durata:45">60 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s tw-uno">
+            <h4>Massaggio Gambe</h4>
+            <ul>
+              <li><span class="tw-t">45 min</span><b data-prezzo="durata:45">60 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s">
+            <h4>Massaggio Total Body</h4>
+            <ul>
+              <li><span class="tw-n">1 ora</span><span class="tw-t">1 h</span><b data-prezzo="durata:60">90 €</b></li>
+              <li><span class="tw-n">1 ora 30 minuti</span><span class="tw-t">1 h 30 min</span><b data-prezzo="durata:90">120 €</b></li>
+              <li><span class="tw-n">2 ore</span><span class="tw-t">2 h</span><b data-prezzo="altro:Treatwell · Total Body 2 ore">130 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s">
+            <h4>Massaggio Personalizzato</h4>
+            <ul>
+              <li><span class="tw-n">45 minuti</span><span class="tw-t">55 min</span><b data-prezzo="durata:45">60 €</b></li>
+              <li><span class="tw-n">1 ora 15 minuti</span><span class="tw-t">1 h 25 min</span><b data-prezzo="durata:75">90 €</b></li>
+              <li><span class="tw-n">1 ora 45 minuti</span><span class="tw-t">1 h 55 min</span><b data-prezzo="durata:105">120 €</b></li>
+            </ul>
+          </article>
+          <article class="tw-s tw-uno">
+            <h4>10 massaggi renata franca</h4>
+            <ul>
+              <li><span class="tw-t">1 h 10 min</span><b data-prezzo="altro:Treatwell · 10 massaggi Renata França">750 €</b></li>
+            </ul>
+          </article>
+        </div>
+        <p class="k-small"><strong>Prenotazioni e annullamenti.</strong> Se hai prenotato su Treatwell valgono le condizioni della tua prenotazione.</p>
       </div>
     </div>
   </section>
