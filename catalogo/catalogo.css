@@ -248,3 +248,10 @@ html, body{overflow-x:clip}
 .k-books .cover-img{width:76px; aspect-ratio:2/3; object-fit:cover; box-shadow:0 6px 18px rgba(27,23,20,.18)}
 .k-books .n{display:block; font-size:18px; margin-bottom:2px}
 @media (min-width:1800px){ .k-books li{grid-template-columns:96px 1fr} .k-books .cover-img{width:96px} }
+
+/* Parti di una sola versione (data-solo / data-tranne, §69 di CRM-SMART): ai
+   lettori il middleware lascia solo le loro; nell'editor si vedono tutte, con
+   un cartellino che dice per chi sono. */
+.editing [data-solo], .editing [data-tranne]{outline:2px dashed #A8573A; outline-offset:12px; margin:28px 0}
+.editing [data-solo]::before{content:"Solo nel catalogo " attr(data-solo); display:inline-block; font:500 11px/1 Inter,system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; background:#A8573A; color:#fff; padding:6px 10px; border-radius:999px}
+.editing [data-tranne]::before{content:"In tutti i cataloghi tranne " attr(data-tranne); display:inline-block; font:500 11px/1 Inter,system-ui,sans-serif; letter-spacing:.12em; text-transform:uppercase; background:#5b5048; color:#fff; padding:6px 10px; border-radius:999px}

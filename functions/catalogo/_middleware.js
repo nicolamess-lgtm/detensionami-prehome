@@ -20,6 +20,14 @@
 // lavora sulla pagina com'è. Senza catalogo_apri (SQL non ancora incollato)
 // si torna a catalogo_percorso, coi prezzi della pagina.
 //
+// Le parti di una sola versione (§69, dal 20/01): catalogo_apri() dice anche
+// la lettera della versione del link, e qui si tolgono le parti che non sono
+// sue. data-solo="T" (anche più lettere: "T T2") resta solo ai link di quelle
+// versioni; data-tranne="T" resta a tutti gli altri. Così la T (i clienti di
+// Treatwell) ha il suo listino, con le durate e i prezzi di Treatwell, nella
+// stessa pagina delle altre. Senza la lettera (SQL non ancora incollato) le
+// parti data-solo si tolgono e restano le altre. Con ?edit si vede tutto.
+//
 // L'editor (/catalogo/?edit, catalogo/edit.js) non ha un codice: passa con la
 // password dell'editor (EDIT_PASSWORD, la stessa di /api/save), chiesta dal
 // browser una volta (autenticazione HTTP Basic, nome qualsiasi). Il browser la
@@ -73,6 +81,12 @@ export function prezzoPer(chiave, p) {
   return v > 0 ? v : undefined;
 }
 
+// «T T2» contiene la lettera del link? (maiuscole e minuscole uguali)
+export function perVersione(elenco, lettera) {
+  const l = String(lettera || '').trim().toUpperCase();
+  return !!l && String(elenco || '').toUpperCase().split(/[\s,]+/).includes(l);
+}
+
 function chiediPassword() {
   return new Response('Serve la password dell\'editor del catalogo.', {
     status: 401,
@@ -112,7 +126,7 @@ export async function onRequest({ request, next, env }) {
 
   const codice = (url.searchParams.get('c') || '').toLowerCase().trim();
   if (!CODICE.test(codice)) return riservato(false);
-  let percorso = null, prezzi = null;
+  let percorso = null, prezzi = null, lettera = '';
   const chiedi = (funzione) => fetch(SUPABASE + '/rest/v1/rpc/' + funzione, {
     method: 'POST',
     headers: { apikey: CHIAVE, Authorization: 'Bearer ' + CHIAVE, 'Content-Type': 'application/json' },
@@ -128,7 +142,7 @@ export async function onRequest({ request, next, env }) {
     } else {
       if (!r.ok) return riservato(true);
       const d = await r.json();
-      if (d && typeof d === 'object') { percorso = d.percorso; prezzi = d.prezzi || null; }
+      if (d && typeof d === 'object') { percorso = d.percorso; prezzi = d.prezzi || null; lettera = typeof d.lettera === 'string' ? d.lettera : ''; }
     }
   } catch (e) {
     return riservato(true);
@@ -144,11 +158,15 @@ export async function onRequest({ request, next, env }) {
   }
 
   const pagina = senzaCache(await next());
-  if (!prezzi || typeof HTMLRewriter === 'undefined' || !/text\/html/i.test(pagina.headers.get('Content-Type') || '')) return pagina;
-  return new HTMLRewriter().on('[data-prezzo]', {
+  if (typeof HTMLRewriter === 'undefined' || !/text\/html/i.test(pagina.headers.get('Content-Type') || '')) return pagina;
+  const riscrivi = new HTMLRewriter()
+    .on('[data-solo]', { element(el) { if (!perVersione(el.getAttribute('data-solo'), lettera)) el.remove(); } })
+    .on('[data-tranne]', { element(el) { if (perVersione(el.getAttribute('data-tranne'), lettera)) el.remove(); } });
+  if (prezzi) riscrivi.on('[data-prezzo]', {
     element(el) {
       const v = prezzoPer(el.getAttribute('data-prezzo'), prezzi);
       if (v !== undefined) el.setInnerContent(euro(v));
     },
-  }).transform(pagina);
+  });
+  return riscrivi.transform(pagina);
 }
